@@ -1,0 +1,75 @@
+{% assign member_image = image %}
+{% if member_image.src %}
+  {% assign member_image = member_image.src %}
+{% endif %}
+
+<div class="team-modal__member">
+  {% if member_image != blank %}
+    <div class="team-modal__image-wrap">
+      <img
+        class="team-modal__image"
+        src="{{ member_image | image_url: width: 320 }}"
+        alt="{{ name | escape }}"
+        width="320"
+        height="320"
+      >
+    </div>
+  {% endif %}
+  <div class="team-modal__details">
+    {% if name != blank %}
+      <h2
+        class="team-modal__name"
+        id="team-modal-title-{{ member_id }}"
+      >
+        {{ name }}
+      </h2>
+    {% endif %}
+    {% if title != blank %}
+      <p class="team-modal__title">
+        {{ title }}
+      </p>
+    {% endif %}
+    {% if bio != blank %}
+      <div class="team-modal__bio">
+        {{ bio }}
+      </div>
+    {% endif %}
+    {% if facebook_url != blank or instagram_url != blank or linkedin_url != blank %}
+      <div class="team-modal__social">
+        {% if facebook_url != blank %}
+          <a
+            class="team-modal__social-link"
+            href="{{ facebook_url }}"
+            aria-label="Facebook"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {% render 'icon-facebook' %}
+          </a>
+        {% endif %}
+        {% if instagram_url != blank %}
+          <a
+            class="team-modal__social-link"
+            href="{{ instagram_url }}"
+            aria-label="Instagram"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {% render 'icon-instagram' %}
+          </a>
+        {% endif %}
+        {% if linkedin_url != blank %}
+          <a
+            class="team-modal__social-link"
+            href="{{ linkedin_url }}"
+            aria-label="LinkedIn"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {% render 'icon-linkedin' %}
+          </a>
+        {% endif %}
+      </div>
+    {% endif %}
+  </div>
+</div>

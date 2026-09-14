@@ -1,0 +1,9 @@
+{
+  "name": "Tropical Demo",
+  "description": "A tropical-inspired Shopify theme demo",
+  "url": "https://tropical-demo.myshopify.com",
+  "domain": "tropical-demo.myshopify.com",
+  "currency": "USD",
+  "money_format": "${{amount}}",
+  "money_with_currency_format": "${{amount}} USD"
+}

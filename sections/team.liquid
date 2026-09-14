@@ -1,0 +1,367 @@
+<section class="team section-spacing">
+  <div class="container">
+    {% if section.settings.heading != blank %}
+      <h1 class="team__heading section-heading">
+        {{ section.settings.heading }}
+      </h1>
+    {% endif %}
+    {% if section.settings.description != blank %}
+      <div class="team__description">
+        {{ section.settings.description }}
+      </div>
+    {% endif %}
+    {% if section.blocks.size > 0 %}
+      <div class="team__grid">
+        {% for block in section.blocks %}
+          <div
+            class="team__grid-item"
+            {{ block.shopify_attributes }}
+          >
+            {% render 'card-team',
+              member_id: block.id,
+              image: block.settings.image,
+              name: block.settings.name,
+              title: block.settings.title
+            %}
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
+
+  <div
+    id="team-modal"
+    class="team-modal"
+    role="dialog"
+    aria-modal="true"
+    aria-hidden="true"
+    hidden
+  >
+    <div
+      class="team-modal__overlay"
+      data-team-modal-close
+    ></div>
+    <div class="team-modal__dialog">
+      <button
+        class="team-modal__close"
+        type="button"
+        data-team-modal-close
+        aria-label="{{ 'accessibility.close' | t }}"
+      >
+        {% render 'icon-close' %}
+      </button>
+      <div class="team-modal__panels">
+        {% for block in section.blocks %}
+          <div
+            id="team-member-{{ block.id }}"
+            class="team-modal__panel"
+            data-team-member-panel="{{ block.id }}"
+            hidden
+          >
+            {% render 'team-member-modal-content',
+              member_id: block.id,
+              image: block.settings.image,
+              name: block.settings.name,
+              title: block.settings.title,
+              bio: block.settings.bio,
+              facebook_url: block.settings.facebook_url,
+              instagram_url: block.settings.instagram_url,
+              linkedin_url: block.settings.linkedin_url
+            %}
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+
+<script
+  src="{{ 'team-modal.js' | asset_url }}"
+  defer
+></script>
+
+{% stylesheet %}
+  .team__heading {
+    margin-bottom: 1rem;
+  }
+
+  .team__description {
+    max-width: 48rem;
+    margin: 0 auto 3rem;
+    font-size: 1.0625rem;
+    line-height: 1.6;
+    text-align: center;
+  }
+
+  .team__grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1rem;
+  }
+
+  .team__grid-item {
+    min-width: 0;
+  }
+
+  .card--team {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: 0;
+    text-align: center;
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+
+  .card--team__image-wrap {
+    width: 100%;
+    aspect-ratio: 1;
+    margin-bottom: 1rem;
+    overflow: hidden;
+    border-radius: 50%;
+  }
+
+  .card--team__image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.35s ease;
+  }
+
+  .card--team:hover .card--team__image,
+  .card--team:focus-visible .card--team__image {
+    transform: scale(1.2);
+  }
+
+  .card--team__body {
+    width: 100%;
+  }
+
+  .card--team__name {
+    margin: 0 0 0.25rem;
+    font-size: clamp(0.75rem, 2vw, 1.125rem);
+    line-height: 1.3;
+  }
+
+  .card--team__title {
+    margin: 0;
+    font-size: clamp(0.6875rem, 1.5vw, 0.875rem);
+    color: rgba(0, 0, 0, 0.7);
+  }
+
+  .team-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--content-padding-x);
+  }
+
+  .team-modal[hidden] {
+    display: none;
+  }
+
+  .team-modal__overlay {
+    position: absolute;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+  }
+
+  .team-modal__dialog {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 28rem;
+    max-height: calc(100vh - 2rem);
+    padding: 2rem 1.5rem 1.5rem;
+    overflow-y: auto;
+    background-color: var(--color-background);
+    border-radius: var(--card-radius);
+  }
+
+  .team-modal__close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    padding: 0;
+    color: var(--color-text);
+    background: none;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+
+  .team-modal__close:hover {
+    color: var(--color-primary);
+    background-color: rgba(0, 0, 0, 0.05);
+  }
+
+  .team-modal__close .icon {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+
+  .team-modal__panel[hidden] {
+    display: none;
+  }
+
+  .team-modal__member {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .team-modal__image-wrap {
+    width: 10rem;
+    height: 10rem;
+    margin-bottom: 1.5rem;
+    overflow: hidden;
+    border-radius: 50%;
+  }
+
+  .team-modal__image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .team-modal__name {
+    margin: 0 0 0.25rem;
+    font-size: 1.5rem;
+  }
+
+  .team-modal__title {
+    margin: 0 0 1rem;
+    font-size: 0.9375rem;
+    color: var(--color-primary);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .team-modal__bio {
+    margin-bottom: 1.5rem;
+    font-size: 0.9375rem;
+    line-height: 1.6;
+    color: rgba(0, 0, 0, 0.8);
+  }
+
+  .team-modal__social {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+  }
+
+  .team-modal__social-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    color: var(--color-text);
+    transition: color 0.2s ease;
+  }
+
+  .team-modal__social-link:hover {
+    color: var(--color-primary);
+  }
+
+  .team-modal__social-link .icon {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+
+  @media (min-width: 768px) {
+    .team__grid {
+      gap: 1.5rem;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Team",
+  "tag": "section",
+  "class": "team-section section-spacing",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Our Team"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description",
+      "default": "<p>Meet the passionate instructors and staff behind Tropical.</p>"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "member",
+      "name": "Team member",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Photo"
+        },
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Name"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "richtext",
+          "id": "bio",
+          "label": "Bio"
+        },
+        {
+          "type": "url",
+          "id": "facebook_url",
+          "label": "Facebook URL"
+        },
+        {
+          "type": "url",
+          "id": "instagram_url",
+          "label": "Instagram URL"
+        },
+        {
+          "type": "url",
+          "id": "linkedin_url",
+          "label": "LinkedIn URL"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Team",
+      "blocks": [
+        { "type": "member" },
+        { "type": "member" },
+        { "type": "member" },
+        { "type": "member" }
+      ]
+    }
+  ]
+}
+{% endschema %}

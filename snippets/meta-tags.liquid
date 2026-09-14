@@ -1,0 +1,8 @@
+<meta
+  name="description"
+  content="{{ page_description | default: shop.description | escape }}"
+>
+<title>
+  {{ page_title | default: shop.name }}
+  {%- unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless -%}
+</title>

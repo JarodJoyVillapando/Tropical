@@ -1,0 +1,59 @@
+{
+  "sections": {
+    "team": {
+      "type": "team",
+      "settings": {
+        "heading": "Our Team",
+        "description": "<p>Meet the passionate instructors and staff who make Tropical a welcoming place to learn, dance, and connect.</p>"
+      },
+      "blocks": {
+        "member_1": {
+          "type": "member",
+          "settings": {
+            "image": "https://cdn.shopify.com/s/files/1/0533/2089/files/placeholder-images-image_large.png",
+            "name": "Maria Gonzalez",
+            "title": "Founder & Lead Instructor",
+            "bio": "<p>Maria has over 15 years of experience teaching salsa and bachata across Chicago. She founded Tropical to build a vibrant Latin dance community for all skill levels.</p>",
+            "instagram_url": "https://instagram.com",
+            "linkedin_url": "https://linkedin.com"
+          }
+        },
+        "member_2": {
+          "type": "member",
+          "settings": {
+            "image": "https://cdn.shopify.com/s/files/1/0533/2089/files/placeholder-images-collection-1_large.png",
+            "name": "James Rivera",
+            "title": "Salsa Instructor",
+            "bio": "<p>James brings energy and precision to every class. A former competitive dancer, he specializes in helping beginners find their rhythm.</p>",
+            "facebook_url": "https://facebook.com",
+            "instagram_url": "https://instagram.com"
+          }
+        },
+        "member_3": {
+          "type": "member",
+          "settings": {
+            "image": "https://cdn.shopify.com/s/files/1/0533/2089/files/placeholder-images-collection-2_large.png",
+            "name": "Sofia Chen",
+            "title": "Bachata Instructor",
+            "bio": "<p>Sofia's classes blend technique with musicality. She has performed internationally and loves introducing students to the soul of bachata.</p>",
+            "instagram_url": "https://instagram.com",
+            "linkedin_url": "https://linkedin.com"
+          }
+        },
+        "member_4": {
+          "type": "member",
+          "settings": {
+            "image": "https://cdn.shopify.com/s/files/1/0533/2089/files/placeholder-images-image_large.png",
+            "name": "David Kim",
+            "title": "Studio Manager",
+            "bio": "<p>David keeps Tropical running smoothly. From class schedules to events, he ensures every student has an exceptional experience.</p>",
+            "facebook_url": "https://facebook.com",
+            "linkedin_url": "https://linkedin.com"
+          }
+        }
+      },
+      "block_order": ["member_1", "member_2", "member_3", "member_4"]
+    }
+  },
+  "order": ["team"]
+}

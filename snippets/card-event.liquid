@@ -1,0 +1,66 @@
+<div class="card-wrapper">
+  <article
+    class="card card--event"
+    tabindex="0"
+  >
+  <div class="card__hover-bg"></div>
+  {% assign card_image = image %}
+  {% if card_image.src %}
+    {% assign card_image = card_image.src %}
+  {% endif %}
+  {% if card_image != blank %}
+    <div class="card__image-wrap">
+      <img
+        class="card__image"
+        src="{{ card_image | image_url: width: 600 }}"
+        alt="{{ title | escape }}"
+        width="600"
+        height="450"
+        loading="lazy"
+      >
+    </div>
+  {% endif %}
+  <div class="card__body">
+    {% if title != blank %}
+      <h3 class="card__title">
+        {{ title }}
+      </h3>
+    {% endif %}
+    <ul class="card__meta">
+      {% if location != blank %}
+        <li class="card__meta-item">
+          {% render 'icon-location' %}
+          <span>{{ location }}</span>
+        </li>
+      {% endif %}
+      {% if date != blank %}
+        <li class="card__meta-item">
+          {% render 'icon-calendar' %}
+          <span>{{ date }}</span>
+        </li>
+      {% endif %}
+      {% if time != blank %}
+        <li class="card__meta-item">
+          {% render 'icon-clock' %}
+          <span>{{ time }}</span>
+        </li>
+      {% endif %}
+    </ul>
+    {% if description != blank %}
+      <p class="card__description">
+        {{ description }}
+      </p>
+    {% endif %}
+  </div>
+  {% if url != blank %}
+    <div class="card__footer">
+      <a
+        class="button button--full"
+        href="{{ url }}"
+      >
+        Read More
+      </a>
+    </div>
+  {% endif %}
+  </article>
+</div>

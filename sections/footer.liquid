@@ -1,0 +1,462 @@
+<footer class="footer">
+  {% assign menu = linklists[section.settings.menu] %}
+
+  {% if menu.links.size > 0 %}
+    <div class="footer__row footer__row--nav">
+      <div class="footer__nav-grid container container--max">
+        {% render 'footer-nav-columns', menu: menu %}
+      </div>
+    </div>
+  {% endif %}
+
+  <div class="footer__row footer__row--info">
+    <div class="footer__info-grid container container--max">
+      <div class="footer__brand">
+        {% if section.settings.logo != blank %}
+          <img
+            class="footer__logo"
+            src="{{ section.settings.logo | image_url: width: 200 }}"
+            alt="{{ shop.name | escape }}"
+            width="200"
+            height="auto"
+            loading="lazy"
+          >
+        {% else %}
+          <span class="footer__logo-text">
+            {{ shop.name }}
+          </span>
+        {% endif %}
+        {% if section.settings.address != blank %}
+          <p class="footer__address">
+            {{ section.settings.address }}
+          </p>
+        {% endif %}
+        {% if section.settings.phone != blank %}
+          <p class="footer__phone">
+            <a
+              class="footer__phone-link"
+              href="tel:{{ section.settings.phone | replace: ' ', '' | replace: '(', '' | replace: ')', '' | replace: '-', '' }}"
+            >
+              {{ section.settings.phone }}
+            </a>
+          </p>
+        {% endif %}
+      </div>
+      <div class="footer__newsletter">
+        {% if section.settings.newsletter_heading != blank %}
+          <h3 class="footer__newsletter-heading">
+            {{ section.settings.newsletter_heading }}
+          </h3>
+        {% endif %}
+        <form
+          class="footer__newsletter-form"
+          action="/contact#newsletter"
+          method="post"
+          accept-charset="UTF-8"
+        >
+          <input
+            type="hidden"
+            name="form_type"
+            value="customer"
+          >
+          <input
+            type="hidden"
+            name="utf8"
+            value="✓"
+          >
+          <input
+            type="hidden"
+            name="contact[tags]"
+            value="newsletter"
+          >
+          <label
+            class="footer__newsletter-label"
+            for="footer-newsletter-email"
+          >
+            {{ section.settings.newsletter_label | default: 'Email address' }}
+          </label>
+          <div class="footer__newsletter-fields">
+            <input
+              class="footer__newsletter-input"
+              type="email"
+              id="footer-newsletter-email"
+              name="contact[email]"
+              placeholder="{{ section.settings.newsletter_placeholder }}"
+              required
+            >
+            <button
+              class="button footer__newsletter-button"
+              type="submit"
+            >
+              {{ section.settings.newsletter_button | default: 'Subscribe' }}
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer__row footer__row--legal">
+    <div class="footer__legal-grid container container--max">
+      <div class="footer__legal">
+        <p class="footer__copyright">
+          &copy; {{ 'now' | date: '%Y' }}
+          {{ shop.name }}.
+          {% if section.settings.terms_link != blank %}
+            <a
+              class="footer__legal-link"
+              href="{{ section.settings.terms_link }}"
+            >
+              Terms &amp; Conditions
+            </a>
+          {% endif %}
+          {% if section.settings.privacy_link != blank %}
+            <a
+              class="footer__legal-link"
+              href="{{ section.settings.privacy_link }}"
+            >
+              Privacy Policy
+            </a>
+          {% endif %}
+        </p>
+      </div>
+      <div class="footer__social">
+        {% if section.settings.facebook_url != blank %}
+          <a
+            class="footer__social-link"
+            href="{{ section.settings.facebook_url }}"
+            aria-label="Facebook"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {% render 'icon-facebook' %}
+          </a>
+        {% endif %}
+        {% if section.settings.instagram_url != blank %}
+          <a
+            class="footer__social-link"
+            href="{{ section.settings.instagram_url }}"
+            aria-label="Instagram"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {% render 'icon-instagram' %}
+          </a>
+        {% endif %}
+        {% if section.settings.linkedin_url != blank %}
+          <a
+            class="footer__social-link"
+            href="{{ section.settings.linkedin_url }}"
+            aria-label="LinkedIn"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {% render 'icon-linkedin' %}
+          </a>
+        {% endif %}
+        {% if section.settings.youtube_url != blank %}
+          <a
+            class="footer__social-link"
+            href="{{ section.settings.youtube_url }}"
+            aria-label="YouTube"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {% render 'icon-youtube' %}
+          </a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</footer>
+
+{% stylesheet %}
+  .footer {
+    color: var(--color-white);
+    background-color: var(--color-text);
+  }
+
+  .footer__row {
+    padding-block: 3rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  }
+
+  .footer__row--legal {
+    border-bottom: none;
+    padding-block: 1.5rem;
+  }
+
+  .footer__nav-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+
+  .footer__nav-title {
+    margin: 0 0 1rem;
+    font-size: 0.875rem;
+  }
+
+  .footer__nav-title-link {
+    color: var(--color-white);
+    text-decoration: none;
+  }
+
+  .footer__nav-title-link:hover {
+    color: var(--color-primary);
+  }
+
+  .footer__nav-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .footer__nav-item {
+    margin-bottom: 0.5rem;
+  }
+
+  .footer__nav-link {
+    color: rgba(255, 255, 255, 0.75);
+    font-size: 0.875rem;
+    text-decoration: none;
+  }
+
+  .footer__nav-link:hover {
+    color: var(--color-white);
+  }
+
+  .footer__info-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  .footer__logo-text {
+    display: block;
+    margin-bottom: 1rem;
+    font-family: var(--font-heading-family);
+    font-size: 1.5rem;
+    font-weight: 700;
+  }
+
+  .footer__logo {
+    display: block;
+    max-height: 3rem;
+    margin-bottom: 1rem;
+  }
+
+  .footer__address,
+  .footer__phone {
+    margin: 0 0 0.5rem;
+    font-size: 0.9375rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.8);
+  }
+
+  .footer__phone-link {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .footer__phone-link:hover {
+    color: var(--color-white);
+  }
+
+  .footer__newsletter-heading {
+    margin: 0 0 1rem;
+    font-size: 1rem;
+  }
+
+  .footer__newsletter-label {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+  }
+
+  .footer__newsletter-fields {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .footer__newsletter-input {
+    width: 100%;
+    padding: 0.875rem 1rem;
+    font-family: inherit;
+    font-size: 1rem;
+    color: var(--color-text);
+    background-color: var(--color-white);
+    border: none;
+  }
+
+  .footer__newsletter-button {
+    width: 100%;
+  }
+
+  .footer__legal-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    align-items: center;
+    text-align: center;
+  }
+
+  .footer__copyright {
+    margin: 0;
+    font-size: 0.8125rem;
+    color: rgba(255, 255, 255, 0.7);
+  }
+
+  .footer__legal-link {
+    margin-left: 1rem;
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+  }
+
+  .footer__legal-link:hover {
+    color: var(--color-white);
+  }
+
+  .footer__social {
+    display: flex;
+    gap: 1rem;
+  }
+
+  .footer__social-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    color: var(--color-white);
+    transition: color 0.2s ease;
+  }
+
+  .footer__social-link:hover {
+    color: var(--color-primary);
+  }
+
+  .footer__social-link .icon {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+
+  @media (min-width: 768px) {
+    .footer__nav-grid {
+      grid-template-columns: repeat(5, 1fr);
+    }
+
+    .footer__info-grid {
+      grid-template-columns: 1fr 1fr;
+      align-items: start;
+    }
+
+    .footer__newsletter-fields {
+      flex-direction: row;
+    }
+
+    .footer__newsletter-input {
+      flex: 1;
+    }
+
+    .footer__newsletter-button {
+      width: auto;
+      flex-shrink: 0;
+    }
+
+    .footer__legal-grid {
+      flex-direction: row;
+      justify-content: space-between;
+      text-align: left;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Footer",
+  "class": "footer-section",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo"
+    },
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Menu",
+      "default": "main-menu"
+    },
+    {
+      "type": "textarea",
+      "id": "address",
+      "label": "Address",
+      "default": "123 Dance Street\nChicago, IL 60601"
+    },
+    {
+      "type": "text",
+      "id": "phone",
+      "label": "Phone",
+      "default": "(312) 555-0100"
+    },
+    {
+      "type": "text",
+      "id": "newsletter_heading",
+      "label": "Newsletter heading",
+      "default": "Stay in the loop"
+    },
+    {
+      "type": "text",
+      "id": "newsletter_placeholder",
+      "label": "Newsletter placeholder",
+      "default": "Enter your email"
+    },
+    {
+      "type": "text",
+      "id": "newsletter_button",
+      "label": "Newsletter button",
+      "default": "Subscribe"
+    },
+    {
+      "type": "url",
+      "id": "terms_link",
+      "label": "Terms & Conditions link",
+      "default": "/pages/terms-and-conditions"
+    },
+    {
+      "type": "url",
+      "id": "privacy_link",
+      "label": "Privacy Policy link",
+      "default": "/pages/privacy-policy"
+    },
+    {
+      "type": "url",
+      "id": "facebook_url",
+      "label": "Facebook URL",
+      "default": "https://facebook.com"
+    },
+    {
+      "type": "url",
+      "id": "instagram_url",
+      "label": "Instagram URL",
+      "default": "https://instagram.com"
+    },
+    {
+      "type": "url",
+      "id": "linkedin_url",
+      "label": "LinkedIn URL",
+      "default": "https://linkedin.com"
+    },
+    {
+      "type": "url",
+      "id": "youtube_url",
+      "label": "YouTube URL",
+      "default": "https://youtube.com"
+    }
+  ]
+}
+{% endschema %}

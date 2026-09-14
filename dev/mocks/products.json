@@ -1,0 +1,254 @@
+[
+  {
+    "id": 1001,
+    "title": "Salsa Dance Shoes",
+    "handle": "salsa-dance-shoes",
+    "description": "Professional salsa dance shoes with suede sole.",
+    "price": 8900,
+    "price_min": 8900,
+    "price_max": 8900,
+    "available": true,
+    "url": "/products/salsa-dance-shoes",
+    "tags": ["salsa", "apparel"],
+    "featured_image": {
+      "src": "https://cdn.shopify.com/s/files/1/0533/2089/files/placeholder-images-image_large.png",
+      "alt": "Salsa Dance Shoes",
+      "width": 800,
+      "height": 800
+    }
+  },
+  {
+    "id": 1002,
+    "title": "Bachata Workshop Pass",
+    "handle": "bachata-workshop-pass",
+    "description": "Full-day bachata intensive workshop pass.",
+    "price": 7500,
+    "price_min": 7500,
+    "price_max": 7500,
+    "available": true,
+    "url": "/products/bachata-workshop-pass",
+    "tags": ["bachata", "intermediate"],
+    "featured_image": {
+      "src": "https://cdn.shopify.com/s/files/1/0533/2089/files/placeholder-images-collection-1_large.png",
+      "alt": "Bachata Workshop Pass",
+      "width": 800,
+      "height": 800
+    }
+  },
+  {
+    "id": 1003,
+    "title": "Tropical Nights Ticket",
+    "handle": "tropical-nights-ticket",
+    "description": "Entry ticket for our weekly Tropical Nights social.",
+    "price": 2500,
+    "price_min": 2500,
+    "price_max": 2500,
+    "available": true,
+    "url": "/products/tropical-nights-ticket",
+    "tags": ["events"],
+    "featured_image": {
+      "src": "https://cdn.shopify.com/s/files/1/0533/2089/files/placeholder-images-collection-2_large.png",
+      "alt": "Tropical Nights Ticket",
+      "width": 800,
+      "height": 800
+    }
+  },
+  {
+    "id": 1004,
+    "title": "Private Lesson Package",
+    "handle": "private-lesson-package",
+    "description": "Five private dance lessons at any studio location.",
+    "price": 35000,
+    "price_min": 35000,
+    "price_max": 35000,
+    "available": true,
+    "url": "/products/private-lesson-package",
+    "tags": ["all-levels"],
+    "featured_image": {
+      "src": "https://cdn.shopify.com/s/files/1/0533/2089/files/placeholder-images-image_large.png",
+      "alt": "Private Lesson Package",
+      "width": 800,
+      "height": 800
+    }
+  },
+  {
+    "id": 1005,
+    "title": "Dance Cruise 2027 Deposit",
+    "handle": "dance-cruise-2027-deposit",
+    "description": "Reserve your spot on the 2027 dance cruise.",
+    "price": 50000,
+    "price_min": 50000,
+    "price_max": 50000,
+    "available": true,
+    "url": "/products/dance-cruise-2027-deposit",
+    "tags": ["events"],
+    "featured_image": {
+      "src": "https://cdn.shopify.com/s/files/1/0533/2089/files/placeholder-images-collection-1_large.png",
+      "alt": "Dance Cruise 2027 Deposit",
+      "width": 800,
+      "height": 800
+    }
+  },
+  {
+    "id": 1006,
+    "title": "Bachata Fundamentals Class Pack",
+    "handle": "bachata-fundamentals-class-pack",
+    "description": "Five-week bachata fundamentals class pack for beginners.",
+    "price": 12000,
+    "price_min": 12000,
+    "price_max": 12000,
+    "available": true,
+    "url": "/products/bachata-fundamentals-class-pack",
+    "tags": ["bachata", "beginner"],
+    "featured_image": {
+      "src": "https://cdn.shopify.com/s/files/1/0533/2089/files/placeholder-images-collection-2_large.png",
+      "alt": "Bachata Fundamentals Class Pack",
+      "width": 800,
+      "height": 800
+    }
+  },
+  {
+    "id": 1007,
+    "title": "Bachata Partnerwork Series",
+    "handle": "bachata-partnerwork-series",
+    "description": "Intermediate partnerwork series focused on connection and musicality.",
+    "price": 9500,
+    "price_min": 9500,
+    "price_max": 9500,
+    "available": true,
+    "url": "/products/bachata-partnerwork-series",
+    "tags": ["bachata", "intermediate"],
+    "featured_image": {
+      "src": "https://cdn.shopify.com/s/files/1/0533/2089/files/placeholder-images-image_large.png",
+      "alt": "Bachata Partnerwork Series",
+      "width": 800,
+      "height": 800
+    }
+  },
+  {
+    "id": 1008,
+    "title": "Salsa Level 1 Class Pass",
+    "handle": "salsa-level-1-class-pass",
+    "description": "Monthly pass for beginner salsa classes at any studio location.",
+    "price": 11000,
+    "price_min": 11000,
+    "price_max": 11000,
+    "available": true,
+    "url": "/products/salsa-level-1-class-pass",
+    "tags": ["salsa", "beginner"],
+    "featured_image": {
+      "src": "https://cdn.shopify.com/s/files/1/0533/2089/files/placeholder-images-collection-1_large.png",
+      "alt": "Salsa Level 1 Class Pass",
+      "width": 800,
+      "height": 800
+    }
+  },
+  {
+    "id": 1009,
+    "title": "Salsa Shines Workshop",
+    "handle": "salsa-shines-workshop",
+    "description": "Half-day workshop on salsa shines and footwork.",
+    "price": 6500,
+    "price_min": 6500,
+    "price_max": 6500,
+    "available": true,
+    "url": "/products/salsa-shines-workshop",
+    "tags": ["salsa", "intermediate"],
+    "featured_image": {
+      "src": "https://cdn.shopify.com/s/files/1/0533/2089/files/placeholder-images-collection-2_large.png",
+      "alt": "Salsa Shines Workshop",
+      "width": 800,
+      "height": 800
+    }
+  },
+  {
+    "id": 1010,
+    "title": "Cumbia Basics Workshop",
+    "handle": "cumbia-basics-workshop",
+    "description": "Introductory cumbia workshop covering basic steps and rhythm.",
+    "price": 5500,
+    "price_min": 5500,
+    "price_max": 5500,
+    "available": true,
+    "url": "/products/cumbia-basics-workshop",
+    "tags": ["cumbia", "beginner"],
+    "featured_image": {
+      "src": "https://cdn.shopify.com/s/files/1/0533/2089/files/placeholder-images-image_large.png",
+      "alt": "Cumbia Basics Workshop",
+      "width": 800,
+      "height": 800
+    }
+  },
+  {
+    "id": 1011,
+    "title": "Cumbia Social Night Pass",
+    "handle": "cumbia-social-night-pass",
+    "description": "Entry pass for our monthly cumbia social night.",
+    "price": 2000,
+    "price_min": 2000,
+    "price_max": 2000,
+    "available": true,
+    "url": "/products/cumbia-social-night-pass",
+    "tags": ["cumbia", "intermediate"],
+    "featured_image": {
+      "src": "https://cdn.shopify.com/s/files/1/0533/2089/files/placeholder-images-collection-1_large.png",
+      "alt": "Cumbia Social Night Pass",
+      "width": 800,
+      "height": 800
+    }
+  },
+  {
+    "id": 1012,
+    "title": "Bachata Advanced Masterclass",
+    "handle": "bachata-advanced-masterclass",
+    "description": "Advanced bachata masterclass covering complex patterns and styling.",
+    "price": 8500,
+    "price_min": 8500,
+    "price_max": 8500,
+    "available": true,
+    "url": "/products/bachata-advanced-masterclass",
+    "tags": ["bachata", "advanced"],
+    "featured_image": {
+      "src": "https://cdn.shopify.com/s/files/1/0533/2089/files/placeholder-images-collection-2_large.png",
+      "alt": "Bachata Advanced Masterclass",
+      "width": 800,
+      "height": 800
+    }
+  },
+  {
+    "id": 1013,
+    "title": "Salsa On2 Advanced Series",
+    "handle": "salsa-on2-advanced-series",
+    "description": "Advanced salsa on2 series for experienced dancers.",
+    "price": 10500,
+    "price_min": 10500,
+    "price_max": 10500,
+    "available": true,
+    "url": "/products/salsa-on2-advanced-series",
+    "tags": ["salsa", "advanced"],
+    "featured_image": {
+      "src": "https://cdn.shopify.com/s/files/1/0533/2089/files/placeholder-images-image_large.png",
+      "alt": "Salsa On2 Advanced Series",
+      "width": 800,
+      "height": 800
+    }
+  },
+  {
+    "id": 1014,
+    "title": "Cumbia Advanced Footwork",
+    "handle": "cumbia-advanced-footwork",
+    "description": "Advanced cumbia footwork and musicality intensive.",
+    "price": 7000,
+    "price_min": 7000,
+    "price_max": 7000,
+    "available": true,
+    "url": "/products/cumbia-advanced-footwork",
+    "tags": ["cumbia", "advanced"],
+    "featured_image": {
+      "src": "https://cdn.shopify.com/s/files/1/0533/2089/files/placeholder-images-collection-2_large.png",
+      "alt": "Cumbia Advanced Footwork",
+      "width": 800,
+      "height": 800
+    }
+  }
+]

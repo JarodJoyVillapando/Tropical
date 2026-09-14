@@ -1,0 +1,116 @@
+{
+  "main-menu": {
+    "handle": "main-menu",
+    "title": "Main menu",
+    "links": [
+      {
+        "title": "Learn to Dance",
+        "url": "/pages/learn-to-dance",
+        "active": false,
+        "links": [
+          {
+            "title": "New Students",
+            "url": "/pages/new-students",
+            "active": false
+          },
+          {
+            "title": "Main Studio - South Loop",
+            "url": "/pages/main-studio-south-loop",
+            "active": false
+          },
+          {
+            "title": "Portage Park - NW Chicago",
+            "url": "/pages/portage-park",
+            "active": false
+          },
+          {
+            "title": "Evanston",
+            "url": "/pages/evanston",
+            "active": false
+          },
+          {
+            "title": "Virtual Classes",
+            "url": "/pages/virtual-classes",
+            "active": false
+          }
+        ]
+      },
+      {
+        "title": "Events",
+        "url": "/pages/events",
+        "active": false,
+        "links": [
+          {
+            "title": "Weekly Tropical Nights",
+            "url": "/pages/weekly-tropical-nights",
+            "active": false
+          },
+          {
+            "title": "Upcoming Events",
+            "url": "/pages/upcoming-events",
+            "active": false
+          },
+          {
+            "title": "Latin Dance Revenue 2026",
+            "url": "/pages/latin-dance-revenue-2026",
+            "active": false
+          },
+          {
+            "title": "dance Cruise 2027",
+            "url": "/pages/dance-cruise-2027",
+            "active": false
+          },
+          {
+            "title": "Private Events",
+            "url": "/pages/private-events",
+            "active": false
+          }
+        ]
+      },
+      {
+        "title": "About Us",
+        "url": "/pages/about-us",
+        "active": false,
+        "links": [
+          {
+            "title": "Purpose",
+            "url": "/pages/purpose",
+            "active": false
+          },
+          {
+            "title": "Code of Conduct",
+            "url": "/pages/code-of-conduct",
+            "active": false
+          },
+          {
+            "title": "Locations",
+            "url": "/pages/locations",
+            "active": false
+          },
+          {
+            "title": "Team",
+            "url": "/pages/team",
+            "active": false
+          },
+          {
+            "title": "Careers",
+            "url": "/pages/careers",
+            "active": false
+          }
+        ]
+      },
+      {
+        "title": "Studio Rental",
+        "url": "/pages/studio-rental",
+        "active": false,
+        "links": []
+      },
+      {
+        "title": "Contact",
+        "url": "/pages/contact",
+        "active": false,
+        "links": []
+      }
+    ]
+  }
+}

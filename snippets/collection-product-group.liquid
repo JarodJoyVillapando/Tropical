@@ -1,0 +1,30 @@
+{% assign group_tag = tag | downcase %}
+{% assign product_count = 0 %}
+
+{% for product in collection.products %}
+  {% if product.tags contains group_tag %}
+    {% assign product_count = product_count | plus: 1 %}
+  {% endif %}
+{% endfor %}
+
+{% if product_count > 0 %}
+  <div
+    class="collection-products__group"
+    {{ block_attributes }}
+  >
+    {% if heading != blank %}
+      <h2 class="collection-products__group-heading">
+        {{ heading }}
+      </h2>
+    {% endif %}
+    <div class="collection-products__grid">
+      {% for product in collection.products %}
+        {% if product.tags contains group_tag %}
+          <div class="collection-products__grid-item">
+            {% render 'card-product', product: product %}
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+{% endif %}

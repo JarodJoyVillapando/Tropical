@@ -1,0 +1,49 @@
+<ul class="header__mobile-menu">
+  {% for link in menu.links %}
+    <li class="header__mobile-menu-item{% if link.links.size > 0 %} header__mobile-menu-item--has-submenu{% endif %}">
+      {% if link.links.size > 0 %}
+        <button
+          class="header__mobile-submenu-toggle"
+          type="button"
+          aria-expanded="false"
+        >
+          {{ link.title }}
+          <span
+            class="header__mobile-submenu-icon"
+            aria-hidden="true"
+          ></span>
+        </button>
+        <ul
+          class="header__mobile-submenu"
+          hidden
+        >
+          <li class="header__mobile-submenu-item">
+            <a
+              class="header__mobile-submenu-link header__mobile-submenu-link--parent"
+              href="{{ link.url }}"
+            >
+              {{ link.title }}
+            </a>
+          </li>
+          {% for child_link in link.links %}
+            <li class="header__mobile-submenu-item">
+              <a
+                class="header__mobile-submenu-link"
+                href="{{ child_link.url }}"
+              >
+                {{ child_link.title }}
+              </a>
+            </li>
+          {% endfor %}
+        </ul>
+      {% else %}
+        <a
+          class="header__mobile-menu-link"
+          href="{{ link.url }}"
+        >
+          {{ link.title }}
+        </a>
+      {% endif %}
+    </li>
+  {% endfor %}
+</ul>

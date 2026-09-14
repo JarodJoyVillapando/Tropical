@@ -1,0 +1,97 @@
+<section class="products-slider section-spacing">
+  <div class="container">
+    {% if section.settings.heading != blank %}
+      <h2 class="section-heading">
+        {{ section.settings.heading }}
+      </h2>
+    {% endif %}
+    {% assign collection = collections[section.settings.collection] %}
+    {% if collection == blank %}
+      {% assign collection = collections['all'] %}
+    {% endif %}
+    <div
+      class="slider slider--cards"
+      data-slider
+      data-slides-desktop="4"
+      data-slides-mobile="1"
+    >
+      <div class="slider__viewport">
+        <div
+          class="slider__track"
+          data-slider-track
+        >
+          {% for product in collection.products limit: section.settings.products_to_show %}
+            <div
+              class="slider__slide"
+              data-slider-slide
+            >
+              <div class="slider__slide-inner">
+                {% render 'card-product', product: product %}
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+      {% if collection.products.size > 1 %}
+        {% render 'slider-controls' %}
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+{% stylesheet %}
+  .products-slider {
+    color: var(--color-white);
+    background-color: var(--color-primary);
+  }
+
+  .products-slider .section-heading {
+    color: var(--color-white);
+  }
+
+  .products-slider .slider__button {
+    color: var(--color-white);
+    border-color: rgba(255, 255, 255, 0.3);
+  }
+
+  .products-slider .slider__button:hover:not(:disabled) {
+    color: var(--color-white);
+    border-color: var(--color-white);
+    background-color: rgba(255, 255, 255, 0.12);
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Products slider",
+  "tag": "section",
+  "class": "products-slider-section section-spacing",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Shop Our Collection"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection"
+    },
+    {
+      "type": "range",
+      "id": "products_to_show",
+      "label": "Products to show",
+      "min": 2,
+      "max": 12,
+      "step": 1,
+      "default": 8
+    }
+  ],
+  "presets": [
+    {
+      "name": "Products slider"
+    }
+  ]
+}
+{% endschema %}

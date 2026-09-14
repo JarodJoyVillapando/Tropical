@@ -1,0 +1,26 @@
+{% for link in menu.links %}
+  <div class="footer__nav-column">
+    <h3 class="footer__nav-title">
+      <a
+        class="footer__nav-title-link"
+        href="{{ link.url }}"
+      >
+        {{ link.title }}
+      </a>
+    </h3>
+    {% if link.links.size > 0 %}
+      <ul class="footer__nav-list">
+        {% for child_link in link.links %}
+          <li class="footer__nav-item">
+            <a
+              class="footer__nav-link"
+              href="{{ child_link.url }}"
+            >
+              {{ child_link.title }}
+            </a>
+          </li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+  </div>
+{% endfor %}

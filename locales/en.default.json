@@ -1,0 +1,30 @@
+{
+  "accessibility": {
+    "skip_to_content": "Skip to content",
+    "previous": "Previous",
+    "next": "Next",
+    "play": "Play slideshow",
+    "pause": "Pause slideshow",
+    "close": "Close"
+  },
+  "products": {
+    "product": {
+      "add_to_cart": "Add to cart",
+      "sold_out": "Sold out"
+    }
+  },
+  "sections": {
+    "header": {
+      "main_menu": "Main menu",
+      "search": "Search",
+      "cart": "Cart",
+      "open_menu": "Open menu"
+    },
+    "hero": {
+      "heading_default": "Welcome to Tropical"
+    },
+    "collection_products": {
+      "empty": "No products in this collection."
+    }
+  }
+}

@@ -1,0 +1,43 @@
+<div class="slider__controls">
+  <button
+    class="slider__button"
+    type="button"
+    data-slider-prev
+    aria-label="{{ 'accessibility.previous' | t }}"
+  >
+    {% render 'icon-chevron-left' %}
+  </button>
+  {% if autoplay %}
+    <button
+      class="slider__button slider__button--toggle"
+      type="button"
+      data-slider-toggle-autoplay
+      data-label-play="{{ 'accessibility.play' | t }}"
+      data-label-pause="{{ 'accessibility.pause' | t }}"
+      aria-label="{{ 'accessibility.pause' | t }}"
+      aria-pressed="true"
+    >
+      <span
+        class="slider__button-icon"
+        data-icon-pause
+      >
+        {% render 'icon-pause' %}
+      </span>
+      <span
+        class="slider__button-icon"
+        data-icon-play
+        hidden
+      >
+        {% render 'icon-play' %}
+      </span>
+    </button>
+  {% endif %}
+  <button
+    class="slider__button"
+    type="button"
+    data-slider-next
+    aria-label="{{ 'accessibility.next' | t }}"
+  >
+    {% render 'icon-chevron-right' %}
+  </button>
+</div>

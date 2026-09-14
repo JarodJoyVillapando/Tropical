@@ -1,0 +1,38 @@
+{% assign member_image = image %}
+{% if member_image.src %}
+  {% assign member_image = member_image.src %}
+{% endif %}
+
+<button
+  class="card--team"
+  type="button"
+  data-team-modal-open
+  data-team-member-id="{{ member_id }}"
+  aria-haspopup="dialog"
+  aria-controls="team-modal"
+>
+  <div class="card--team__image-wrap">
+    {% if member_image != blank %}
+      <img
+        class="card--team__image"
+        src="{{ member_image | image_url: width: 400 }}"
+        alt="{{ name | escape }}"
+        width="400"
+        height="400"
+        loading="lazy"
+      >
+    {% endif %}
+  </div>
+  <div class="card--team__body">
+    {% if name != blank %}
+      <h3 class="card--team__name">
+        {{ name }}
+      </h3>
+    {% endif %}
+    {% if title != blank %}
+      <p class="card--team__title">
+        {{ title }}
+      </p>
+    {% endif %}
+  </div>
+</button>

@@ -1,0 +1,43 @@
+---
+description: Shopify theme conventions for Tropical
+globs: "{sections,snippets,layout,templates,assets}/**/*"
+alwaysApply: false
+---
+
+# Tropical Shopify Theme
+
+## Architecture
+
+- Online Store 2.0: JSON templates in `templates/`, sections in `sections/`, partials in `snippets/`
+- Each homepage module is a section with its own `{% schema %}`, styles, and markup
+- Use BEM class naming: `.block`, `.block__element`, `.block--modifier`
+
+## HTML
+
+- One element per line (opening tag, content, closing tag each on their own line)
+- Use semantic HTML (`section`, `nav`, `article`, etc.)
+- Include accessible labels, alt text, and skip links where relevant
+
+## Liquid
+
+- Prefer `{% render 'snippet' %}` over `{% include %}`
+- Section settings via `section.settings.*`; blocks via `block.settings.*`
+- Keep business logic minimal — presentation belongs in Liquid, data comes from Shopify (or mocks locally)
+
+## CSS
+
+- Scoped styles in `{% stylesheet %}` blocks within sections when possible
+- Global tokens and resets live in `assets/base.css`
+- Use CSS custom properties from theme settings where applicable
+- Layout: `--content-width` (1440px), `--content-width-max` (1680px), `--content-padding-x` (20px)
+- Wrap section content in `.container` (standard) or `.container.container--max` (wide)
+- Typography: `font_picker` settings + `snippets/fonts.liquid` (`font_face`, `font_modify`, `preload_tag`)
+- Body font: Roboto (`--font-body-family`); headings: Josefin Sans (`--font-heading-family`)
+- Colors: `--color-text` (#000), `--color-primary` (#a5171f), `--color-background` / `--color-white` (#fff)
+- Radius: `--card-radius`, `--button-radius`, and `--input-radius` scale up at 768px and 1024px breakpoints
+
+## Local preview
+
+- Run `npm run dev` to preview without a Shopify account
+- Test sections in isolation at `/sections/{name}`
+- Update mock data in `dev/mocks/` for local testing

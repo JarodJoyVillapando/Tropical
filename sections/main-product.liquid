@@ -1,0 +1,140 @@
+<section class="product section-spacing">
+  <div class="container">
+    <div class="product__layout">
+      <div class="product__media">
+        {% if product.featured_image != blank %}
+          <div class="product__image-wrap box-shadow--subtle">
+            <img
+              class="product__image"
+              src="{{ product.featured_image | image_url: width: 1200 }}"
+              alt="{{ product.featured_image.alt | default: product.title | escape }}"
+              width="1200"
+              height="1200"
+              loading="eager"
+            >
+          </div>
+        {% endif %}
+      </div>
+      <div class="product__info">
+        <h1 class="product__title">
+          {{ product.title }}
+        </h1>
+        {% if product.description != blank %}
+          <div class="product__description">
+            {{ product.description }}
+          </div>
+        {% endif %}
+        <p class="product__price">
+          {{ product.price | money }}
+        </p>
+        {% assign current_variant = product.selected_or_first_available_variant %}
+        {% if product.available %}
+          {% form 'product', product, class: 'product__form' %}
+            <input
+              type="hidden"
+              name="id"
+              value="{{ current_variant.id }}"
+            >
+            <button
+              class="button product__add-to-cart"
+              type="submit"
+              name="add"
+            >
+              {{ 'products.product.add_to_cart' | t }}
+            </button>
+          {% endform %}
+        {% else %}
+          <button
+            class="button product__add-to-cart"
+            type="button"
+            disabled
+          >
+            {{ 'products.product.sold_out' | t }}
+          </button>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% stylesheet %}
+  .product__layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 2rem;
+    align-items: start;
+  }
+
+  .product__image-wrap {
+    overflow: hidden;
+    border-radius: var(--card-radius);
+  }
+
+  .product__image {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1;
+    object-fit: cover;
+  }
+
+  .product__title {
+    margin: 0 0 1rem;
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    line-height: 1.2;
+  }
+
+  .product__description {
+    margin-bottom: 1.5rem;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: rgba(0, 0, 0, 0.8);
+  }
+
+  .product__price {
+    margin: 0 0 1.5rem;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--color-primary);
+  }
+
+  .product__form {
+    margin: 0;
+  }
+
+  .product__add-to-cart {
+    min-width: 12rem;
+  }
+
+  .product__add-to-cart:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+  }
+
+  @media (min-width: 768px) {
+    .product__layout {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 3rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .product__layout {
+      gap: 4rem;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Product information",
+  "tag": "section",
+  "class": "main-product-section section-spacing",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Product information"
+    }
+  ]
+}
+{% endschema %}

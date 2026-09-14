@@ -1,0 +1,98 @@
+.slider {
+  position: relative;
+}
+
+.slider__viewport {
+  overflow: hidden;
+}
+
+.slider__track {
+  display: flex;
+  transition: transform 0.4s ease;
+  will-change: transform;
+}
+
+.slider__slide {
+  flex: 0 0 100%;
+  min-width: 0;
+  padding-inline: 0.5rem;
+}
+
+.slider--cards .slider__track {
+  align-items: stretch;
+}
+
+.slider--cards .slider__slide {
+  display: flex;
+  flex: 0 0 100%;
+  padding-block: 1rem;
+}
+
+.slider--cards .slider__slide-inner {
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .slider--cards .slider__slide {
+    flex: 0 0 25%;
+  }
+}
+
+.slider__controls {
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-top: 2rem;
+}
+
+.slider__controls[hidden] {
+  display: none;
+}
+
+.slider__button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  padding: 0;
+  color: var(--color-text);
+  background: none;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: color 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.slider__button:hover:not(:disabled) {
+  color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+.slider__button:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.slider__button .icon {
+  width: 1rem;
+  height: 1rem;
+}
+
+.slider__button--toggle {
+  position: relative;
+}
+
+.slider__button-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.slider__button-icon[hidden] {
+  display: none;
+}
+
+.slider__slide-inner {
+  height: 100%;
+}

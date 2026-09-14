@@ -1,0 +1,55 @@
+[
+  {
+    "id": 3001,
+    "title": "Bachata",
+    "handle": "bachata",
+    "description": "<p>Classes, workshops, and passes for bachata — from fundamentals to partnerwork.</p>",
+    "url": "/collections/bachata",
+    "products_count": 4,
+    "product_handles": [
+      "bachata-fundamentals-class-pack",
+      "bachata-workshop-pass",
+      "bachata-partnerwork-series",
+      "bachata-advanced-masterclass"
+    ],
+    "image": {
+      "src": "https://cdn.shopify.com/s/files/1/0533/2089/files/placeholder-images-collection-1_large.png",
+      "alt": "Bachata"
+    }
+  },
+  {
+    "id": 3002,
+    "title": "Salsa",
+    "handle": "salsa",
+    "description": "<p>Everything salsa — shoes, class passes, and workshops for every level.</p>",
+    "url": "/collections/salsa",
+    "products_count": 4,
+    "product_handles": [
+      "salsa-level-1-class-pass",
+      "salsa-shines-workshop",
+      "salsa-on2-advanced-series",
+      "salsa-dance-shoes"
+    ],
+    "image": {
+      "src": "https://cdn.shopify.com/s/files/1/0533/2089/files/placeholder-images-collection-2_large.png",
+      "alt": "Salsa"
+    }
+  },
+  {
+    "id": 3003,
+    "title": "Cumbia",
+    "handle": "cumbia",
+    "description": "<p>Learn cumbia basics and join our social nights on the dance floor.</p>",
+    "url": "/collections/cumbia",
+    "products_count": 3,
+    "product_handles": [
+      "cumbia-basics-workshop",
+      "cumbia-social-night-pass",
+      "cumbia-advanced-footwork"
+    ],
+    "image": {
+      "src": "https://cdn.shopify.com/s/files/1/0533/2089/files/placeholder-images-image_large.png",
+      "alt": "Cumbia"
+    }
+  }
+]

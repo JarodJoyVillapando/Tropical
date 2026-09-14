@@ -1,0 +1,131 @@
+{
+  "sections": {
+    "hero_slider": {
+      "type": "hero-slider",
+      "settings": {
+        "autoplay": true,
+        "autoplay_interval": 6
+      },
+      "blocks": {
+        "slide_1": {
+          "type": "slide",
+          "settings": {
+            "background_type": "image",
+            "image": "https://cdn.shopify.com/s/files/1/0533/2089/files/placeholder-images-image_large.png",
+            "heading": "Move to the Rhythm of Tropical",
+            "text": "Join Chicago's premier Latin dance community. Classes for every level, every style.",
+            "button_label": "Learn to Dance",
+            "button_link": "/pages/learn-to-dance",
+            "button_label_2": "View Events",
+            "button_link_2": "/pages/events"
+          }
+        },
+        "slide_2": {
+          "type": "slide",
+          "settings": {
+            "background_type": "image",
+            "image": "https://cdn.shopify.com/s/files/1/0533/2089/files/placeholder-images-collection-2_large.png",
+            "heading": "Weekly Tropical Nights",
+            "text": "Social dancing every Friday. Live music, great energy, all welcome.",
+            "button_label": "Get Tickets",
+            "button_link": "/pages/weekly-tropical-nights"
+          }
+        }
+      },
+      "block_order": ["slide_1", "slide_2"]
+    },
+    "events": {
+      "type": "events-slider",
+      "settings": {
+        "heading": "Upcoming Events"
+      },
+      "blocks": {
+        "event_1": {
+          "type": "event",
+          "settings": {
+            "image": "https://cdn.shopify.com/s/files/1/0533/2089/files/placeholder-images-image_large.png",
+            "title": "Weekly Tropical Nights",
+            "location": "Main Studio - South Loop",
+            "date": "Every Friday",
+            "time": "8:00 PM – 12:00 AM",
+            "description": "Chicago's hottest Latin social. Salsa, bachata, and more with live DJs.",
+            "url": "/pages/weekly-tropical-nights"
+          }
+        },
+        "event_2": {
+          "type": "event",
+          "settings": {
+            "image": "https://cdn.shopify.com/s/files/1/0533/2089/files/placeholder-images-collection-1_large.png",
+            "title": "Latin Dance Revenue 2026",
+            "location": "Portage Park - NW Chicago",
+            "date": "March 15, 2026",
+            "time": "6:00 PM – 11:00 PM",
+            "description": "Our annual showcase featuring performances from students and professionals.",
+            "url": "/pages/latin-dance-revenue-2026"
+          }
+        },
+        "event_3": {
+          "type": "event",
+          "settings": {
+            "image": "https://cdn.shopify.com/s/files/1/0533/2089/files/placeholder-images-collection-2_large.png",
+            "title": "Dance Cruise 2027",
+            "location": "Caribbean",
+            "date": "January 2027",
+            "time": "7-Day Cruise",
+            "description": "Dance, connect, and explore paradise with the Tropical community.",
+            "url": "/pages/dance-cruise-2027"
+          }
+        },
+        "event_4": {
+          "type": "event",
+          "settings": {
+            "image": "https://cdn.shopify.com/s/files/1/0533/2089/files/placeholder-images-image_large.png",
+            "title": "Private Events",
+            "location": "All Locations",
+            "date": "By Appointment",
+            "time": "Flexible",
+            "description": "Host your next celebration with professional dance entertainment.",
+            "url": "/pages/private-events"
+          }
+        }
+      },
+      "block_order": ["event_1", "event_2", "event_3", "event_4"]
+    },
+    "products": {
+      "type": "products-slider",
+      "settings": {
+        "heading": "Shop Our Collection",
+        "collection": "all",
+        "products_to_show": 8
+      }
+    },
+    "testimonials": {
+      "type": "testimonials",
+      "settings": {
+        "heading": "What Our Students Say"
+      },
+      "blocks": {
+        "testimonial_1": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "Tropical changed my life. I came in as a complete beginner and now I dance every weekend. The community is incredible.",
+            "rating": 5,
+            "image": "https://cdn.shopify.com/s/files/1/0533/2089/files/placeholder-images-image_large.png",
+            "name": "Maria Gonzalez"
+          }
+        },
+        "testimonial_2": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "The instructors are world-class and the energy at Tropical Nights is unmatched. Best decision I ever made.",
+            "rating": 5,
+            "image": "https://cdn.shopify.com/s/files/1/0533/2089/files/placeholder-images-collection-1_large.png",
+            "name": "James Rivera"
+          }
+        }
+      },
+      "block_order": ["testimonial_1", "testimonial_2"]
+    }
+  },
+  "order": ["hero_slider", "events", "products", "testimonials"]
+}

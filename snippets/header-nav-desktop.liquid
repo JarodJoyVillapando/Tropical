@@ -1,0 +1,32 @@
+<ul class="header__menu">
+  {% for link in menu.links %}
+    <li
+      class="header__menu-item{% if link.links.size > 0 %} header__menu-item--has-dropdown{% endif %}"
+    >
+      <a
+        class="header__menu-link{% if link.links.size > 0 %} header__menu-link--has-dropdown{% endif %}"
+        href="{{ link.url }}"
+        {% if link.links.size > 0 %}
+          aria-haspopup="true"
+          aria-expanded="false"
+        {% endif %}
+      >
+        {{ link.title }}
+      </a>
+      {% if link.links.size > 0 %}
+        <ul class="header__submenu">
+          {% for child_link in link.links %}
+            <li class="header__submenu-item">
+              <a
+                class="header__submenu-link"
+                href="{{ child_link.url }}"
+              >
+                {{ child_link.title }}
+              </a>
+            </li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    </li>
+  {% endfor %}
+</ul>

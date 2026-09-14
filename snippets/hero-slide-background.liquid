@@ -1,0 +1,53 @@
+{% assign slide_image = block.settings.image %}
+{% if slide_image.src %}
+  {% assign slide_image = slide_image.src %}
+{% endif %}
+
+{% if block.settings.background_type == 'video' %}
+  {% if block.settings.video_source == 'local' and block.settings.video_file != blank %}
+    <video
+      class="hero-slider__video"
+      autoplay
+      muted
+      loop
+      playsinline
+      {% if block.settings.video_poster != blank %}
+        poster="{{ block.settings.video_poster | image_url: width: 1920 }}"
+      {% endif %}
+    >
+      <source
+        src="{{ block.settings.video_file }}"
+        type="video/mp4"
+      >
+    </video>
+  {% elsif block.settings.video_source == 'youtube' and block.settings.video_url != blank %}
+    <div class="hero-slider__embed">
+      <iframe
+        src="https://www.youtube.com/embed/{{ block.settings.video_url | split: 'v=' | last | split: '&' | first }}?autoplay=1&mute=1&loop=1&playlist={{ block.settings.video_url | split: 'v=' | last | split: '&' | first }}&controls=0&showinfo=0&rel=0&modestbranding=1"
+        title="{{ block.settings.heading | escape }}"
+        allow="autoplay; encrypted-media"
+        allowfullscreen
+      ></iframe>
+    </div>
+  {% elsif block.settings.video_source == 'vimeo' and block.settings.video_url != blank %}
+    <div class="hero-slider__embed">
+      <iframe
+        src="https://player.vimeo.com/video/{{ block.settings.video_url | split: '/' | last }}?background=1&autoplay=1&muted=1&loop=1"
+        title="{{ block.settings.heading | escape }}"
+        allow="autoplay; fullscreen"
+        allowfullscreen
+      ></iframe>
+    </div>
+  {% endif %}
+{% elsif slide_image != blank %}
+  <img
+    class="hero-slider__image"
+    src="{{ slide_image | image_url: width: 1920 }}"
+    alt="{{ block.settings.heading | escape }}"
+    width="1920"
+    height="1080"
+    loading="{% if eager %}eager{% else %}lazy{% endif %}"
+  >
+{% else %}
+  <div class="hero-slider__placeholder"></div>
+{% endif %}

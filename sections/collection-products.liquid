@@ -1,0 +1,172 @@
+<section class="collection-products section-spacing">
+  <div class="container">
+    {% if section.settings.heading != blank %}
+      {% assign heading = section.settings.heading %}
+    {% else %}
+      {% assign heading = collection.title %}
+    {% endif %}
+
+    {% if heading != blank %}
+      <h1 class="collection-products__heading section-heading">
+        {{ heading }}
+      </h1>
+    {% endif %}
+
+    {% if section.settings.show_description and collection.description != blank %}
+      <div class="collection-products__description">
+        {{ collection.description }}
+      </div>
+    {% endif %}
+
+    {% if section.blocks.size > 0 %}
+      <div class="collection-products__groups">
+        {% for block in section.blocks %}
+          {% if block.type == 'level' %}
+            {% render 'collection-product-group',
+              collection: collection,
+              heading: block.settings.heading,
+              tag: block.settings.tag,
+              block_attributes: block.shopify_attributes
+            %}
+          {% endif %}
+        {% endfor %}
+      </div>
+    {% elsif collection.products.size > 0 %}
+      <div class="collection-products__grid">
+        {% for product in collection.products %}
+          <div class="collection-products__grid-item">
+            {% render 'card-product', product: product %}
+          </div>
+        {% endfor %}
+      </div>
+    {% else %}
+      <p class="collection-products__empty">
+        {{ 'sections.collection_products.empty' | t }}
+      </p>
+    {% endif %}
+  </div>
+</section>
+
+{% stylesheet %}
+  .collection-products__heading {
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+
+  .collection-products__description {
+    max-width: 48rem;
+    margin: 0 auto 3rem;
+    font-size: 1.0625rem;
+    line-height: 1.6;
+    text-align: center;
+  }
+
+  .collection-products__groups {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+  }
+
+  .collection-products__group-heading {
+    margin: 0 0 1.5rem;
+    font-size: clamp(1.25rem, 3vw, 1.75rem);
+    text-align: center;
+  }
+
+  .collection-products__grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1rem;
+  }
+
+  .collection-products__grid-item {
+    min-width: 0;
+  }
+
+  .collection-products__empty {
+    margin: 0;
+    text-align: center;
+    color: rgba(0, 0, 0, 0.7);
+  }
+
+  @media (min-width: 768px) {
+    .collection-products__grid {
+      gap: 1.5rem;
+    }
+
+    .collection-products__groups {
+      gap: 4rem;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Collection products",
+  "tag": "section",
+  "class": "collection-products-section section-spacing",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "info": "Leave blank to use the collection title."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_description",
+      "label": "Show collection description",
+      "default": true
+    }
+  ],
+  "blocks": [
+    {
+      "type": "level",
+      "name": "Skill level",
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Beginner"
+        },
+        {
+          "type": "text",
+          "id": "tag",
+          "label": "Product tag",
+          "info": "Products in this collection with this tag are listed in this group.",
+          "default": "beginner"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Collection products",
+      "blocks": [
+        {
+          "type": "level",
+          "settings": {
+            "heading": "Beginner",
+            "tag": "beginner"
+          }
+        },
+        {
+          "type": "level",
+          "settings": {
+            "heading": "Intermediate",
+            "tag": "intermediate"
+          }
+        },
+        {
+          "type": "level",
+          "settings": {
+            "heading": "Advanced",
+            "tag": "advanced"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

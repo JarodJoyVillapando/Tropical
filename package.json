@@ -1,0 +1,20 @@
+{
+  "name": "tropical-theme",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Shopify Online Store 2.0 theme — local preview without a store account",
+  "type": "module",
+  "scripts": {
+    "dev": "node --watch dev/server.mjs",
+    "theme:check": "shopify theme check",
+    "theme:dev": "shopify theme dev",
+    "theme:push": "shopify theme push"
+  },
+  "devDependencies": {
+    "@shopify/cli": "^3.84.0",
+    "chokidar": "^4.0.3",
+    "express": "^5.1.0",
+    "liquidjs": "^10.21.0",
+    "ws": "^8.18.1"
+  }
+}

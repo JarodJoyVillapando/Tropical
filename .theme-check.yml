@@ -1,0 +1,2 @@
+root: .
+extends: theme-check:recommended

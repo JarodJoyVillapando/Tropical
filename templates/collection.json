@@ -1,0 +1,36 @@
+{
+  "sections": {
+    "collection_products": {
+      "type": "collection-products",
+      "settings": {
+        "heading": "",
+        "show_description": true
+      },
+      "blocks": {
+        "level_beginner": {
+          "type": "level",
+          "settings": {
+            "heading": "Beginner",
+            "tag": "beginner"
+          }
+        },
+        "level_intermediate": {
+          "type": "level",
+          "settings": {
+            "heading": "Intermediate",
+            "tag": "intermediate"
+          }
+        },
+        "level_advanced": {
+          "type": "level",
+          "settings": {
+            "heading": "Advanced",
+            "tag": "advanced"
+          }
+        }
+      },
+      "block_order": ["level_beginner", "level_intermediate", "level_advanced"]
+    }
+  },
+  "order": ["collection_products"]
+}

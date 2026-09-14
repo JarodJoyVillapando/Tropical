@@ -1,0 +1,25 @@
+---
+description: Tropical project overview and goals
+alwaysApply: true
+---
+
+# Tropical Project
+
+Shopify Online Store 2.0 theme in demo phase — build modules locally, deploy to Shopify later.
+
+## Current phase
+
+1. **Setup** — theme structure, local dev server, theme check (done)
+2. **Homepage modules** — build sections in `sections/`, register in `templates/index.json`
+3. **Rules & polish** — expand Cursor rules as patterns emerge
+
+## Key paths
+
+- Homepage template: `templates/index.json`
+- Sections (modules): `sections/`
+- Mock data for local testing: `dev/mocks/`
+- Local preview: `npm run dev` → http://127.0.0.1:9292
+
+## When integrating Shopify
+
+Use `npm run theme:dev` with a development store. The theme folder structure is already Shopify-compatible — no migration needed.

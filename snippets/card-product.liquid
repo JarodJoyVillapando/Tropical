@@ -1,0 +1,36 @@
+<div class="card-wrapper box-shadow--subtle">
+  <article
+    class="card card--product"
+    tabindex="0"
+  >
+    <div class="card__hover-bg"></div>
+    {% if product.featured_image != blank %}
+      <div class="card__image-wrap">
+        <img
+          class="card__image"
+          src="{{ product.featured_image.src }}"
+          alt="{{ product.title | escape }}"
+          width="600"
+          height="450"
+          loading="lazy"
+        >
+      </div>
+    {% endif %}
+    <div class="card__body">
+      <h3 class="card__title">
+        {{ product.title }}
+      </h3>
+      <p class="card__price">
+        {{ product.price | money }}
+      </p>
+    </div>
+    <div class="card__footer">
+      <a
+        class="button button--full"
+        href="{{ product.url }}"
+      >
+        Select Options
+      </a>
+    </div>
+  </article>
+</div>
