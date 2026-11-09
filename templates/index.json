@@ -99,6 +99,38 @@
         "products_to_show": 8
       }
     },
+    "accordion_faq": {
+      "type": "accordion",
+      "settings": {
+        "heading": "Frequently asked questions",
+        "single_open": true,
+        "open_first_item": true
+      },
+      "blocks": {
+        "faq_1": {
+          "type": "item",
+          "settings": {
+            "title": "Do I need a partner to start?",
+            "content": "<p>No. We rotate partners in class and welcome solo dancers at every level.</p>"
+          }
+        },
+        "faq_2": {
+          "type": "item",
+          "settings": {
+            "title": "What should I wear to my first class?",
+            "content": "<p>Comfortable clothes and shoes you can move in. Avoid rubber soles if possible.</p>"
+          }
+        },
+        "faq_3": {
+          "type": "item",
+          "settings": {
+            "title": "How do I choose the right level?",
+            "content": "<p>Start with Level 1 or attend a New Students orientation. Our staff can help place you after your first visit.</p>"
+          }
+        }
+      },
+      "block_order": ["faq_1", "faq_2", "faq_3"]
+    },
     "testimonials": {
       "type": "testimonials",
       "settings": {
@@ -127,5 +159,5 @@
       "block_order": ["testimonial_1", "testimonial_2"]
     }
   },
-  "order": ["hero_slider", "events", "products", "testimonials"]
+  "order": ["hero_slider", "events", "products", "accordion_faq", "testimonials"]
 }

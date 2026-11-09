@@ -1,15 +1,27 @@
-<footer class="footer">
+<footer
+  class="footer {% render 'motion', mode: 'class', type: section.settings.animation_type, duration: section.settings.animation_duration %}"
+  style="{% render 'motion', mode: 'style', type: section.settings.animation_type, duration: section.settings.animation_duration %}"
+  {% render 'motion', mode: 'data', type: section.settings.animation_type, duration: section.settings.animation_duration %}
+>
   {% assign menu = linklists[section.settings.menu] %}
 
   {% if menu.links.size > 0 %}
     <div class="footer__row footer__row--nav">
       <div class="footer__nav-grid container container--max">
-        {% render 'footer-nav-columns', menu: menu %}
+        {% render 'footer-nav-columns',
+          menu: menu,
+          item_animation_type: section.settings.item_animation_type,
+          item_animation_duration: section.settings.item_animation_duration
+        %}
       </div>
     </div>
   {% endif %}
 
-  <div class="footer__row footer__row--info">
+  <div
+    class="footer__row footer__row--info {% render 'motion', mode: 'class', type: section.settings.item_animation_type, duration: section.settings.item_animation_duration %}"
+    style="{% render 'motion', mode: 'style', type: section.settings.item_animation_type, duration: section.settings.item_animation_duration %} --motion-stagger-index: 1;"
+    {% render 'motion', mode: 'data', type: section.settings.item_animation_type, duration: section.settings.item_animation_duration %}
+  >
     <div class="footer__info-grid container container--max">
       <div class="footer__brand">
         {% if section.settings.logo != blank %}
@@ -96,7 +108,11 @@
     </div>
   </div>
 
-  <div class="footer__row footer__row--legal">
+  <div
+    class="footer__row footer__row--legal {% render 'motion', mode: 'class', type: section.settings.item_animation_type, duration: section.settings.item_animation_duration %}"
+    style="{% render 'motion', mode: 'style', type: section.settings.item_animation_type, duration: section.settings.item_animation_duration %} --motion-stagger-index: 2;"
+    {% render 'motion', mode: 'data', type: section.settings.item_animation_type, duration: section.settings.item_animation_duration %}
+  >
     <div class="footer__legal-grid container container--max">
       <div class="footer__legal">
         <p class="footer__copyright">
@@ -456,6 +472,66 @@
       "id": "youtube_url",
       "label": "YouTube URL",
       "default": "https://youtube.com"
+    },
+    {
+      "type": "header",
+      "content": "Section animation"
+    },
+    {
+      "type": "select",
+      "id": "animation_type",
+      "label": "Animation type",
+      "options": [
+        { "value": "theme_default", "label": "Theme default" },
+        { "value": "none", "label": "None" },
+        { "value": "fade-in", "label": "Fade in" },
+        { "value": "fade-up", "label": "Fade up" },
+        { "value": "fade-down", "label": "Fade down" },
+        { "value": "slide-left", "label": "Slide in from right" },
+        { "value": "slide-right", "label": "Slide in from left" },
+        { "value": "zoom-in", "label": "Zoom in" }
+      ],
+      "default": "theme_default"
+    },
+    {
+      "type": "range",
+      "id": "animation_duration",
+      "label": "Animation duration (ms)",
+      "min": 0,
+      "max": 2000,
+      "step": 50,
+      "default": 0,
+      "info": "0 uses the theme default duration."
+    },
+    {
+      "type": "header",
+      "content": "Footer row animation"
+    },
+    {
+      "type": "select",
+      "id": "item_animation_type",
+      "label": "Animation type",
+      "options": [
+        { "value": "theme_default", "label": "Theme default" },
+        { "value": "none", "label": "None" },
+        { "value": "fade-in", "label": "Fade in" },
+        { "value": "fade-up", "label": "Fade up" },
+        { "value": "fade-down", "label": "Fade down" },
+        { "value": "slide-left", "label": "Slide in from right" },
+        { "value": "slide-right", "label": "Slide in from left" },
+        { "value": "zoom-in", "label": "Zoom in" }
+      ],
+      "default": "theme_default"
+    },
+    {
+      "type": "range",
+      "id": "item_animation_duration",
+      "label": "Animation duration (ms)",
+      "min": 0,
+      "max": 2000,
+      "step": 50,
+      "default": 0,
+      "info": "0 uses the theme default duration."
     }
   ]
 }

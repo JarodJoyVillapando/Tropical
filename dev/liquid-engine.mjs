@@ -201,10 +201,14 @@ function createEngine() {
     async render(ctx) {
       const defaults = await getSectionDefaults(this.sectionType);
       const source = await readThemeFile(path.join('sections', `${this.sectionType}.liquid`));
+      const sectionConfig = ctx.get(['section_configs', this.sectionType]) ?? {};
       const section = {
         id: this.sectionType,
-        settings: defaults,
-        blocks: [],
+        settings: {
+          ...defaults,
+          ...(sectionConfig.settings ?? {}),
+        },
+        blocks: normalizeBlocks(sectionConfig),
       };
 
       return engine.parseAndRender(source, {
@@ -356,6 +360,7 @@ function buildRenderContext(mocks, settingsData, localeData, overrides = {}) {
     product: products[0] ?? null,
     linklists: mocks.linklists ?? {},
     settings: expandSettings(settingsData.current),
+    section_configs: settingsData.current.sections ?? {},
     request: {
       locale: { iso_code: 'en' },
       page_type: 'index',

@@ -1,7 +1,20 @@
 <ul class="header__menu">
   {% for link in menu.links %}
+    {% assign menu_type = 'simple' %}
+    {% assign link_title = link.title | strip | downcase %}
+    {% for block in blocks %}
+      {% assign block_title = block.settings.menu_item | strip | downcase %}
+      {% if block_title == link_title %}
+        {% assign menu_type = block.settings.menu_type %}
+        {% break %}
+      {% endif %}
+    {% endfor %}
+    {% assign is_mega = false %}
+    {% if menu_type == 'mega' or menu_type == 'mega_tabs' %}
+      {% assign is_mega = true %}
+    {% endif %}
     <li
-      class="header__menu-item{% if link.links.size > 0 %} header__menu-item--has-dropdown{% endif %}"
+      class="header__menu-item{% if link.links.size > 0 %} header__menu-item--has-dropdown{% endif %}{% if is_mega %} header__menu-item--mega{% endif %}{% if menu_type == 'mega_tabs' %} header__menu-item--mega-tabs{% endif %}"
     >
       <a
         class="header__menu-link{% if link.links.size > 0 %} header__menu-link--has-dropdown{% endif %}"
@@ -14,18 +27,64 @@
         {{ link.title }}
       </a>
       {% if link.links.size > 0 %}
-        <ul class="header__submenu">
-          {% for child_link in link.links %}
-            <li class="header__submenu-item">
-              <a
-                class="header__submenu-link"
-                href="{{ child_link.url }}"
-              >
-                {{ child_link.title }}
-              </a>
-            </li>
-          {% endfor %}
-        </ul>
+        {% if menu_type == 'mega_tabs' %}
+          {% render 'header-mega-tabs', link: link %}
+        {% elsif menu_type == 'mega' %}
+          <div class="header__mega-menu">
+            <div class="header__mega-menu-inner">
+              <div class="header__mega-menu-header">
+                <span class="header__mega-menu-title">
+                  {{ link.title }}
+                </span>
+                <a
+                  class="header__mega-menu-view-all"
+                  href="{{ link.url }}"
+                >
+                  View all
+                </a>
+              </div>
+              <ul class="header__mega-menu-grid">
+                {% for child_link in link.links %}
+                  <li class="header__mega-menu-group">
+                    <a
+                      class="header__mega-menu-heading"
+                      href="{{ child_link.url }}"
+                    >
+                      {{ child_link.title }}
+                    </a>
+                    {% if child_link.links.size > 0 %}
+                      <ul class="header__mega-menu-links">
+                        {% for grandchild_link in child_link.links %}
+                          <li class="header__mega-menu-link-item">
+                            <a
+                              class="header__mega-menu-link"
+                              href="{{ grandchild_link.url }}"
+                            >
+                              {{ grandchild_link.title }}
+                            </a>
+                          </li>
+                        {% endfor %}
+                      </ul>
+                    {% endif %}
+                  </li>
+                {% endfor %}
+              </ul>
+            </div>
+          </div>
+        {% else %}
+          <ul class="header__submenu">
+            {% for child_link in link.links %}
+              <li class="header__submenu-item">
+                <a
+                  class="header__submenu-link"
+                  href="{{ child_link.url }}"
+                >
+                  {{ child_link.title }}
+                </a>
+              </li>
+            {% endfor %}
+          </ul>
+        {% endif %}
       {% endif %}
     </li>
   {% endfor %}

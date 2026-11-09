@@ -20,8 +20,13 @@
     {{ 'base.css' | asset_url | stylesheet_tag }}
     {{ 'component-card.css' | asset_url | stylesheet_tag }}
     {{ 'component-slider.css' | asset_url | stylesheet_tag }}
+    {{ 'component-motion.css' | asset_url | stylesheet_tag }}
     <script
       src="{{ 'global.js' | asset_url }}"
+      defer
+    ></script>
+    <script
+      src="{{ 'component-motion.js' | asset_url }}"
       defer
     ></script>
     <script

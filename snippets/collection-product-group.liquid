@@ -9,7 +9,9 @@
 
 {% if product_count > 0 %}
   <div
-    class="collection-products__group"
+    class="collection-products__group {% render 'motion', mode: 'class', type: group_animation_type, duration: group_animation_duration %}"
+    style="{% render 'motion', mode: 'style', type: group_animation_type, duration: group_animation_duration %}"
+    {% render 'motion', mode: 'data', type: group_animation_type, duration: group_animation_duration %}
     {{ block_attributes }}
   >
     {% if heading != blank %}
@@ -18,11 +20,17 @@
       </h2>
     {% endif %}
     <div class="collection-products__grid">
+      {% assign item_index = 0 %}
       {% for product in collection.products %}
         {% if product.tags contains group_tag %}
-          <div class="collection-products__grid-item">
+          <div
+            class="collection-products__grid-item {% render 'motion', mode: 'class', type: item_animation_type, duration: item_animation_duration %}"
+            style="{% render 'motion', mode: 'style', type: item_animation_type, duration: item_animation_duration %} --motion-stagger-index: {{ item_index }};"
+            {% render 'motion', mode: 'data', type: item_animation_type, duration: item_animation_duration %}
+          >
             {% render 'card-product', product: product %}
           </div>
+          {% assign item_index = item_index | plus: 1 %}
         {% endif %}
       {% endfor %}
     </div>
