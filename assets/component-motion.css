@@ -1,0 +1,45 @@
+.motion {
+  opacity: 0;
+  transition:
+    opacity var(--motion-duration, 600ms) ease,
+    transform var(--motion-duration, 600ms) ease;
+  transition-delay: calc(var(--motion-stagger-index, 0) * 80ms);
+  will-change: opacity, transform;
+}
+
+.motion.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+.motion--fade-in {
+  transform: none;
+}
+
+.motion--fade-up {
+  transform: translate3d(0, 1.5rem, 0);
+}
+
+.motion--fade-down {
+  transform: translate3d(0, -1.5rem, 0);
+}
+
+.motion--slide-left {
+  transform: translate3d(2rem, 0, 0);
+}
+
+.motion--slide-right {
+  transform: translate3d(-2rem, 0, 0);
+}
+
+.motion--zoom-in {
+  transform: scale(0.94);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .motion {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}

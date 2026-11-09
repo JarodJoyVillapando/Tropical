@@ -1,4 +1,8 @@
-<section class="collection-products section-spacing">
+<section
+  class="collection-products section-spacing {% render 'motion', mode: 'class', type: section.settings.animation_type, duration: section.settings.animation_duration %}"
+  style="{% render 'motion', mode: 'style', type: section.settings.animation_type, duration: section.settings.animation_duration %}"
+  {% render 'motion', mode: 'data', type: section.settings.animation_type, duration: section.settings.animation_duration %}
+>
   <div class="container">
     {% if section.settings.heading != blank %}
       {% assign heading = section.settings.heading %}
@@ -26,7 +30,11 @@
               collection: collection,
               heading: block.settings.heading,
               tag: block.settings.tag,
-              block_attributes: block.shopify_attributes
+              block_attributes: block.shopify_attributes,
+              group_animation_type: block.settings.animation_type,
+              group_animation_duration: block.settings.animation_duration,
+              item_animation_type: section.settings.item_animation_type,
+              item_animation_duration: section.settings.item_animation_duration
             %}
           {% endif %}
         {% endfor %}
@@ -34,7 +42,11 @@
     {% elsif collection.products.size > 0 %}
       <div class="collection-products__grid">
         {% for product in collection.products %}
-          <div class="collection-products__grid-item">
+          <div
+            class="collection-products__grid-item {% render 'motion', mode: 'class', type: section.settings.item_animation_type, duration: section.settings.item_animation_duration %}"
+            style="{% render 'motion', mode: 'style', type: section.settings.item_animation_type, duration: section.settings.item_animation_duration %} --motion-stagger-index: {{ forloop.index0 }};"
+            {% render 'motion', mode: 'data', type: section.settings.item_animation_type, duration: section.settings.item_animation_duration %}
+          >
             {% render 'card-product', product: product %}
           </div>
         {% endfor %}
@@ -117,6 +129,66 @@
       "id": "show_description",
       "label": "Show collection description",
       "default": true
+    },
+    {
+      "type": "header",
+      "content": "Section animation"
+    },
+    {
+      "type": "select",
+      "id": "animation_type",
+      "label": "Animation type",
+      "options": [
+        { "value": "theme_default", "label": "Theme default" },
+        { "value": "none", "label": "None" },
+        { "value": "fade-in", "label": "Fade in" },
+        { "value": "fade-up", "label": "Fade up" },
+        { "value": "fade-down", "label": "Fade down" },
+        { "value": "slide-left", "label": "Slide in from right" },
+        { "value": "slide-right", "label": "Slide in from left" },
+        { "value": "zoom-in", "label": "Zoom in" }
+      ],
+      "default": "theme_default"
+    },
+    {
+      "type": "range",
+      "id": "animation_duration",
+      "label": "Animation duration (ms)",
+      "min": 0,
+      "max": 2000,
+      "step": 50,
+      "default": 0,
+      "info": "0 uses the theme default duration."
+    },
+    {
+      "type": "header",
+      "content": "Product card animation"
+    },
+    {
+      "type": "select",
+      "id": "item_animation_type",
+      "label": "Animation type",
+      "options": [
+        { "value": "theme_default", "label": "Theme default" },
+        { "value": "none", "label": "None" },
+        { "value": "fade-in", "label": "Fade in" },
+        { "value": "fade-up", "label": "Fade up" },
+        { "value": "fade-down", "label": "Fade down" },
+        { "value": "slide-left", "label": "Slide in from right" },
+        { "value": "slide-right", "label": "Slide in from left" },
+        { "value": "zoom-in", "label": "Zoom in" }
+      ],
+      "default": "theme_default"
+    },
+    {
+      "type": "range",
+      "id": "item_animation_duration",
+      "label": "Animation duration (ms)",
+      "min": 0,
+      "max": 2000,
+      "step": 50,
+      "default": 0,
+      "info": "0 uses the theme default duration."
     }
   ],
   "blocks": [
@@ -136,6 +208,36 @@
           "label": "Product tag",
           "info": "Products in this collection with this tag are listed in this group.",
           "default": "beginner"
+        },
+        {
+          "type": "header",
+          "content": "Animation"
+        },
+        {
+          "type": "select",
+          "id": "animation_type",
+          "label": "Animation type",
+          "options": [
+            { "value": "theme_default", "label": "Theme default" },
+            { "value": "none", "label": "None" },
+            { "value": "fade-in", "label": "Fade in" },
+            { "value": "fade-up", "label": "Fade up" },
+            { "value": "fade-down", "label": "Fade down" },
+            { "value": "slide-left", "label": "Slide in from right" },
+            { "value": "slide-right", "label": "Slide in from left" },
+            { "value": "zoom-in", "label": "Zoom in" }
+          ],
+          "default": "theme_default"
+        },
+        {
+          "type": "range",
+          "id": "animation_duration",
+          "label": "Animation duration (ms)",
+          "min": 0,
+          "max": 2000,
+          "step": 50,
+          "default": 0,
+          "info": "0 uses the theme default duration."
         }
       ]
     }

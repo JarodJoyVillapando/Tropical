@@ -1,0 +1,367 @@
+<section
+  class="accordion section-spacing {% render 'motion', mode: 'class', type: section.settings.animation_type, duration: section.settings.animation_duration %}"
+  style="{% render 'motion', mode: 'style', type: section.settings.animation_type, duration: section.settings.animation_duration %}"
+  {% render 'motion', mode: 'data', type: section.settings.animation_type, duration: section.settings.animation_duration %}
+>
+  <div class="container">
+    {% if section.settings.heading != blank %}
+      <h2 class="section-heading accordion__heading">
+        {{ section.settings.heading }}
+      </h2>
+    {% endif %}
+    {% if section.settings.description != blank %}
+      <div class="accordion__description">
+        {{ section.settings.description }}
+      </div>
+    {% endif %}
+    {% if section.blocks.size > 0 %}
+      <div
+        class="accordion__list"
+        data-accordion
+        data-accordion-single="{{ section.settings.single_open }}"
+      >
+        {% for block in section.blocks %}
+          {% assign panel_id = 'accordion-panel-' | append: section.id | append: '-' | append: block.id %}
+          {% assign trigger_id = 'accordion-trigger-' | append: section.id | append: '-' | append: block.id %}
+          {% assign starts_open = false %}
+          {% if section.settings.open_first_item and forloop.first %}
+            {% assign starts_open = true %}
+          {% endif %}
+          <div
+            class="accordion__item {% render 'motion', mode: 'class', type: block.settings.animation_type, duration: block.settings.animation_duration %}"
+            style="{% render 'motion', mode: 'style', type: block.settings.animation_type, duration: block.settings.animation_duration %} --motion-stagger-index: {{ forloop.index0 }};"
+            {% render 'motion', mode: 'data', type: block.settings.animation_type, duration: block.settings.animation_duration %}
+            {{ block.shopify_attributes }}
+          >
+            <h3 class="accordion__item-heading">
+              <button
+                class="accordion__trigger"
+                type="button"
+                id="{{ trigger_id }}"
+                aria-expanded="{% if starts_open %}true{% else %}false{% endif %}"
+                aria-controls="{{ panel_id }}"
+                data-accordion-trigger
+              >
+                <span class="accordion__trigger-label">
+                  {{ block.settings.title }}
+                </span>
+                <span
+                  class="accordion__trigger-icon"
+                  aria-hidden="true"
+                ></span>
+              </button>
+            </h3>
+            <div
+              class="accordion__panel"
+              id="{{ panel_id }}"
+              role="region"
+              aria-labelledby="{{ trigger_id }}"
+              data-accordion-panel
+              {% unless starts_open %}
+                hidden
+              {% endunless %}
+            >
+              <div class="accordion__content">
+                {{ block.settings.content }}
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+{% stylesheet %}
+  .accordion__heading {
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+
+  .accordion__description {
+    max-width: 48rem;
+    margin: 0 auto 2.5rem;
+    font-size: 1.0625rem;
+    line-height: 1.6;
+    text-align: center;
+  }
+
+  .accordion__list {
+    max-width: 48rem;
+    margin: 0 auto;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    border-radius: var(--card-radius);
+    overflow: hidden;
+    background-color: var(--color-background);
+    box-shadow: var(--shadow-subtle);
+  }
+
+  .accordion__item + .accordion__item {
+    border-top: 1px solid rgba(0, 0, 0, 0.12);
+  }
+
+  .accordion__item-heading {
+    margin: 0;
+    font-size: inherit;
+    font-weight: inherit;
+    text-transform: none;
+  }
+
+  .accordion__trigger {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    width: 100%;
+    padding: 1.125rem 1.25rem;
+    color: var(--color-text);
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: 600;
+    text-align: left;
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: color 0.2s ease, background-color 0.2s ease;
+  }
+
+  .accordion__trigger:hover,
+  .accordion__trigger[aria-expanded="true"] {
+    color: var(--color-primary);
+    background-color: rgba(165, 23, 31, 0.06);
+  }
+
+  .accordion__trigger-icon {
+    position: relative;
+    flex-shrink: 0;
+    width: 0.75rem;
+    height: 0.75rem;
+  }
+
+  .accordion__trigger-icon::before,
+  .accordion__trigger-icon::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0.75rem;
+    height: 2px;
+    background-color: currentColor;
+    transform: translate(-50%, -50%);
+    transition: transform 0.2s ease;
+  }
+
+  .accordion__trigger-icon::after {
+    transform: translate(-50%, -50%) rotate(90deg);
+  }
+
+  .accordion__trigger[aria-expanded="true"] .accordion__trigger-icon::after {
+    transform: translate(-50%, -50%) rotate(0deg);
+    opacity: 0;
+  }
+
+  .accordion__panel {
+    overflow: hidden;
+    transition: grid-template-rows 0.28s ease;
+  }
+
+  .accordion__panel[hidden] {
+    display: none;
+  }
+
+  .accordion__content {
+    padding: 1.25rem;
+    font-size: 0.9375rem;
+    line-height: 1.6;
+    color: rgba(0, 0, 0, 0.85);
+  }
+
+  .accordion__content p:first-child {
+    margin-top: 0;
+  }
+
+  .accordion__content p:last-child {
+    margin-bottom: 0;
+  }
+{% endstylesheet %}
+
+{% javascript %}
+  (function () {
+    document.querySelectorAll('[data-accordion]').forEach(function (root) {
+      const singleOpen = root.getAttribute('data-accordion-single') === 'true';
+      const triggers = root.querySelectorAll('[data-accordion-trigger]');
+
+      function closePanel(trigger) {
+        const panel = document.getElementById(trigger.getAttribute('aria-controls'));
+        if (!panel) return;
+        trigger.setAttribute('aria-expanded', 'false');
+        panel.hidden = true;
+      }
+
+      function openPanel(trigger) {
+        const panel = document.getElementById(trigger.getAttribute('aria-controls'));
+        if (!panel) return;
+        if (singleOpen) {
+          triggers.forEach(function (other) {
+            if (other !== trigger) closePanel(other);
+          });
+        }
+        trigger.setAttribute('aria-expanded', 'true');
+        panel.hidden = false;
+      }
+
+      triggers.forEach(function (trigger) {
+        trigger.addEventListener('click', function () {
+          const isOpen = trigger.getAttribute('aria-expanded') === 'true';
+          if (isOpen) {
+            closePanel(trigger);
+          } else {
+            openPanel(trigger);
+          }
+        });
+      });
+    });
+  })();
+{% endjavascript %}
+
+{% schema %}
+{
+  "name": "Accordion",
+  "tag": "section",
+  "class": "accordion-section section-spacing",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Frequently asked questions"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description",
+      "default": "<p>Answers to common questions about classes, levels, and what to expect at Tropical.</p>"
+    },
+    {
+      "type": "checkbox",
+      "id": "single_open",
+      "label": "Only one panel open at a time",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "open_first_item",
+      "label": "Open first item by default",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Section animation"
+    },
+    {
+      "type": "select",
+      "id": "animation_type",
+      "label": "Animation type",
+      "options": [
+        { "value": "theme_default", "label": "Theme default" },
+        { "value": "none", "label": "None" },
+        { "value": "fade-in", "label": "Fade in" },
+        { "value": "fade-up", "label": "Fade up" },
+        { "value": "fade-down", "label": "Fade down" },
+        { "value": "slide-left", "label": "Slide in from right" },
+        { "value": "slide-right", "label": "Slide in from left" },
+        { "value": "zoom-in", "label": "Zoom in" }
+      ],
+      "default": "theme_default"
+    },
+    {
+      "type": "range",
+      "id": "animation_duration",
+      "label": "Animation duration (ms)",
+      "min": 0,
+      "max": 2000,
+      "step": 50,
+      "default": 0,
+      "info": "0 uses the theme default duration."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Accordion item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Question"
+        },
+        {
+          "type": "richtext",
+          "id": "content",
+          "label": "Content",
+          "default": "<p>Answer goes here.</p>"
+        },
+        {
+          "type": "header",
+          "content": "Animation"
+        },
+        {
+          "type": "select",
+          "id": "animation_type",
+          "label": "Animation type",
+          "options": [
+            { "value": "theme_default", "label": "Theme default" },
+            { "value": "none", "label": "None" },
+            { "value": "fade-in", "label": "Fade in" },
+            { "value": "fade-up", "label": "Fade up" },
+            { "value": "fade-down", "label": "Fade down" },
+            { "value": "slide-left", "label": "Slide in from right" },
+            { "value": "slide-right", "label": "Slide in from left" },
+            { "value": "zoom-in", "label": "Zoom in" }
+          ],
+          "default": "theme_default"
+        },
+        {
+          "type": "range",
+          "id": "animation_duration",
+          "label": "Animation duration (ms)",
+          "min": 0,
+          "max": 2000,
+          "step": 50,
+          "default": 0,
+          "info": "0 uses the theme default duration."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Accordion",
+      "blocks": [
+        {
+          "type": "item",
+          "settings": {
+            "title": "Do I need a partner to start?",
+            "content": "<p>No. We rotate partners in class and welcome solo dancers at every level.</p>"
+          }
+        },
+        {
+          "type": "item",
+          "settings": {
+            "title": "What should I wear to my first class?",
+            "content": "<p>Comfortable clothes and shoes you can move in. Avoid rubber soles if possible.</p>"
+          }
+        },
+        {
+          "type": "item",
+          "settings": {
+            "title": "How do I choose the right level?",
+            "content": "<p>Start with Level 1 or attend a New Students orientation. Our staff can help place you after your first visit.</p>"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

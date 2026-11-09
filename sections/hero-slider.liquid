@@ -1,5 +1,7 @@
 <section
-  class="hero-slider section-spacing"
+  class="hero-slider section-spacing {% render 'motion', mode: 'class', type: section.settings.animation_type, duration: section.settings.animation_duration %}"
+  style="{% render 'motion', mode: 'style', type: section.settings.animation_type, duration: section.settings.animation_duration %}"
+  {% render 'motion', mode: 'data', type: section.settings.animation_type, duration: section.settings.animation_duration %}
   aria-label="{{ section.settings.accessibility_label | default: 'Hero' }}"
 >
   <div
@@ -26,7 +28,11 @@
                 {% render 'hero-slide-background', block: block, eager: forloop.first %}
               </div>
               <div class="hero-slider__overlay"></div>
-              <div class="hero-slider__content container">
+              <div
+                class="hero-slider__content container {% render 'motion', mode: 'class', type: block.settings.animation_type, duration: block.settings.animation_duration %}"
+                style="{% render 'motion', mode: 'style', type: block.settings.animation_type, duration: block.settings.animation_duration %}"
+                {% render 'motion', mode: 'data', type: block.settings.animation_type, duration: block.settings.animation_duration %}
+              >
                 {% if block.settings.heading != blank %}
                   <h1 class="hero-slider__heading">
                     {{ block.settings.heading }}
@@ -223,6 +229,36 @@
       "max": 10,
       "step": 1,
       "default": 6
+    },
+    {
+      "type": "header",
+      "content": "Section animation"
+    },
+    {
+      "type": "select",
+      "id": "animation_type",
+      "label": "Animation type",
+      "options": [
+        { "value": "theme_default", "label": "Theme default" },
+        { "value": "none", "label": "None" },
+        { "value": "fade-in", "label": "Fade in" },
+        { "value": "fade-up", "label": "Fade up" },
+        { "value": "fade-down", "label": "Fade down" },
+        { "value": "slide-left", "label": "Slide in from right" },
+        { "value": "slide-right", "label": "Slide in from left" },
+        { "value": "zoom-in", "label": "Zoom in" }
+      ],
+      "default": "none"
+    },
+    {
+      "type": "range",
+      "id": "animation_duration",
+      "label": "Animation duration (ms)",
+      "min": 0,
+      "max": 2000,
+      "step": 50,
+      "default": 0,
+      "info": "0 uses the theme default duration."
     }
   ],
   "blocks": [
@@ -302,6 +338,36 @@
           "type": "url",
           "id": "button_link_2",
           "label": "Second button link"
+        },
+        {
+          "type": "header",
+          "content": "Animation"
+        },
+        {
+          "type": "select",
+          "id": "animation_type",
+          "label": "Animation type",
+          "options": [
+            { "value": "theme_default", "label": "Theme default" },
+            { "value": "none", "label": "None" },
+            { "value": "fade-in", "label": "Fade in" },
+            { "value": "fade-up", "label": "Fade up" },
+            { "value": "fade-down", "label": "Fade down" },
+            { "value": "slide-left", "label": "Slide in from right" },
+            { "value": "slide-right", "label": "Slide in from left" },
+            { "value": "zoom-in", "label": "Zoom in" }
+          ],
+          "default": "theme_default"
+        },
+        {
+          "type": "range",
+          "id": "animation_duration",
+          "label": "Animation duration (ms)",
+          "min": 0,
+          "max": 2000,
+          "step": 50,
+          "default": 0,
+          "info": "0 uses the theme default duration."
         }
       ]
     }

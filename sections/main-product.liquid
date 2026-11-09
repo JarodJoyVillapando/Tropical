@@ -1,7 +1,15 @@
-<section class="product section-spacing">
+<section
+  class="product section-spacing {% render 'motion', mode: 'class', type: section.settings.animation_type, duration: section.settings.animation_duration %}"
+  style="{% render 'motion', mode: 'style', type: section.settings.animation_type, duration: section.settings.animation_duration %}"
+  {% render 'motion', mode: 'data', type: section.settings.animation_type, duration: section.settings.animation_duration %}
+>
   <div class="container">
     <div class="product__layout">
-      <div class="product__media">
+      <div
+        class="product__media {% render 'motion', mode: 'class', type: section.settings.media_animation_type, duration: section.settings.media_animation_duration %}"
+        style="{% render 'motion', mode: 'style', type: section.settings.media_animation_type, duration: section.settings.media_animation_duration %}"
+        {% render 'motion', mode: 'data', type: section.settings.media_animation_type, duration: section.settings.media_animation_duration %}
+      >
         {% if product.featured_image != blank %}
           <div class="product__image-wrap box-shadow--subtle">
             <img
@@ -15,7 +23,11 @@
           </div>
         {% endif %}
       </div>
-      <div class="product__info">
+      <div
+        class="product__info {% render 'motion', mode: 'class', type: section.settings.info_animation_type, duration: section.settings.info_animation_duration %}"
+        style="{% render 'motion', mode: 'style', type: section.settings.info_animation_type, duration: section.settings.info_animation_duration %}"
+        {% render 'motion', mode: 'data', type: section.settings.info_animation_type, duration: section.settings.info_animation_duration %}
+      >
         <h1 class="product__title">
           {{ product.title }}
         </h1>
@@ -130,7 +142,98 @@
   "name": "Product information",
   "tag": "section",
   "class": "main-product-section section-spacing",
-  "settings": [],
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section animation"
+    },
+    {
+      "type": "select",
+      "id": "animation_type",
+      "label": "Animation type",
+      "options": [
+        { "value": "theme_default", "label": "Theme default" },
+        { "value": "none", "label": "None" },
+        { "value": "fade-in", "label": "Fade in" },
+        { "value": "fade-up", "label": "Fade up" },
+        { "value": "fade-down", "label": "Fade down" },
+        { "value": "slide-left", "label": "Slide in from right" },
+        { "value": "slide-right", "label": "Slide in from left" },
+        { "value": "zoom-in", "label": "Zoom in" }
+      ],
+      "default": "theme_default"
+    },
+    {
+      "type": "range",
+      "id": "animation_duration",
+      "label": "Animation duration (ms)",
+      "min": 0,
+      "max": 2000,
+      "step": 50,
+      "default": 0,
+      "info": "0 uses the theme default duration."
+    },
+    {
+      "type": "header",
+      "content": "Product media animation"
+    },
+    {
+      "type": "select",
+      "id": "media_animation_type",
+      "label": "Animation type",
+      "options": [
+        { "value": "theme_default", "label": "Theme default" },
+        { "value": "none", "label": "None" },
+        { "value": "fade-in", "label": "Fade in" },
+        { "value": "fade-up", "label": "Fade up" },
+        { "value": "fade-down", "label": "Fade down" },
+        { "value": "slide-left", "label": "Slide in from right" },
+        { "value": "slide-right", "label": "Slide in from left" },
+        { "value": "zoom-in", "label": "Zoom in" }
+      ],
+      "default": "theme_default"
+    },
+    {
+      "type": "range",
+      "id": "media_animation_duration",
+      "label": "Animation duration (ms)",
+      "min": 0,
+      "max": 2000,
+      "step": 50,
+      "default": 0,
+      "info": "0 uses the theme default duration."
+    },
+    {
+      "type": "header",
+      "content": "Product info animation"
+    },
+    {
+      "type": "select",
+      "id": "info_animation_type",
+      "label": "Animation type",
+      "options": [
+        { "value": "theme_default", "label": "Theme default" },
+        { "value": "none", "label": "None" },
+        { "value": "fade-in", "label": "Fade in" },
+        { "value": "fade-up", "label": "Fade up" },
+        { "value": "fade-down", "label": "Fade down" },
+        { "value": "slide-left", "label": "Slide in from right" },
+        { "value": "slide-right", "label": "Slide in from left" },
+        { "value": "zoom-in", "label": "Zoom in" }
+      ],
+      "default": "theme_default"
+    },
+    {
+      "type": "range",
+      "id": "info_animation_duration",
+      "label": "Animation duration (ms)",
+      "min": 0,
+      "max": 2000,
+      "step": 50,
+      "default": 0,
+      "info": "0 uses the theme default duration."
+    }
+  ],
   "presets": [
     {
       "name": "Product information"

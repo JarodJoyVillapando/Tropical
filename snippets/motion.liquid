@@ -1,0 +1,27 @@
+{%- liquid
+  assign motion_mode = mode | default: 'class'
+  assign motion_type = type | default: 'theme_default'
+  assign motion_duration = duration | default: 0 | plus: 0
+
+  if settings.enable_animations == false
+    assign motion_type = 'none'
+  endif
+
+  if motion_type == 'theme_default' or motion_type == blank
+    assign motion_type = settings.default_animation_type | default: 'fade-up'
+  endif
+
+  if motion_duration == 0
+    assign motion_duration = settings.default_animation_duration | default: 600
+  endif
+-%}
+{%- if motion_type != 'none' -%}
+  {%- case motion_mode -%}
+    {%- when 'class' -%}
+      motion motion--{{ motion_type }}
+    {%- when 'style' -%}
+      --motion-duration: {{ motion_duration }}ms;
+    {%- when 'data' -%}
+      data-motion
+  {%- endcase -%}
+{%- endif -%}

@@ -4,6 +4,38 @@
     "color_primary": "#a5171f",
     "color_background": "#ffffff",
     "type_header_font": "josefin_sans_n4",
-    "type_body_font": "roboto_n4"
+    "type_body_font": "roboto_n4",
+    "enable_animations": true,
+    "default_animation_type": "fade-up",
+    "default_animation_duration": 600,
+    "sections": {
+      "header": {
+        "type": "header",
+        "settings": {
+          "menu": "main-menu",
+          "sticky": true
+        },
+        "blocks": {
+          "students_style": {
+            "type": "menu_item",
+            "settings": {
+              "menu_item": "Students",
+              "menu_type": "mega_tabs"
+            }
+          },
+          "events_style": {
+            "type": "menu_item",
+            "settings": {
+              "menu_item": "Events",
+              "menu_type": "mega"
+            }
+          }
+        },
+        "block_order": [
+          "students_style",
+          "events_style"
+        ]
+      }
+    }
   }
 }

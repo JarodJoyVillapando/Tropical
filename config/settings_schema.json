@@ -54,5 +54,39 @@
         "default": "roboto_n4"
       }
     ]
+  },
+  {
+    "name": "Animations",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "enable_animations",
+        "label": "Enable scroll animations",
+        "default": true
+      },
+      {
+        "type": "select",
+        "id": "default_animation_type",
+        "label": "Default animation type",
+        "options": [
+          { "value": "fade-in", "label": "Fade in" },
+          { "value": "fade-up", "label": "Fade up" },
+          { "value": "fade-down", "label": "Fade down" },
+          { "value": "slide-left", "label": "Slide in from right" },
+          { "value": "slide-right", "label": "Slide in from left" },
+          { "value": "zoom-in", "label": "Zoom in" }
+        ],
+        "default": "fade-up"
+      },
+      {
+        "type": "range",
+        "id": "default_animation_duration",
+        "label": "Default animation duration (ms)",
+        "min": 200,
+        "max": 2000,
+        "step": 50,
+        "default": 600
+      }
+    ]
   }
 ]

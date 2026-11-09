@@ -1,5 +1,9 @@
 {% for link in menu.links %}
-  <div class="footer__nav-column">
+  <div
+    class="footer__nav-column {% render 'motion', mode: 'class', type: item_animation_type, duration: item_animation_duration %}"
+    style="{% render 'motion', mode: 'style', type: item_animation_type, duration: item_animation_duration %} --motion-stagger-index: {{ forloop.index0 }};"
+    {% render 'motion', mode: 'data', type: item_animation_type, duration: item_animation_duration %}
+  >
     <h3 class="footer__nav-title">
       <a
         class="footer__nav-title-link"

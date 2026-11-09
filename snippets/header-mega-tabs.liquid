@@ -1,0 +1,143 @@
+{% liquid
+  assign default_tab_id = '0'
+  assign tab_counter = 0
+  assign new_students_url = ''
+
+  for child_link in link.links
+    assign child_key = child_link.title | strip | downcase
+    if child_key == 'new students'
+      assign new_students_url = child_link.url
+      continue
+    endif
+    if child_key contains 'main studio'
+      assign default_tab_id = tab_counter | append: ''
+    endif
+    assign tab_counter = tab_counter | plus: 1
+  endfor
+%}
+<div class="header__mega-menu header__mega-menu--tabs">
+  <div class="header__mega-menu-inner container container--max">
+    <div class="header__mega-menu-header">
+      <span class="header__mega-menu-title">
+        {{ link.title }}
+      </span>
+      <div class="header__mega-menu-header-actions">
+        {% if new_students_url != blank %}
+          <a
+            class="header__mega-menu-action"
+            href="{{ new_students_url }}"
+          >
+            New Students
+          </a>
+        {% endif %}
+        <a
+          class="header__mega-menu-action header__mega-menu-action--primary"
+          href="{{ link.url }}"
+        >
+          Overview
+        </a>
+      </div>
+    </div>
+    <div
+      class="header__mega-tabs"
+      data-mega-tabs
+      data-mega-tabs-default="{{ default_tab_id }}"
+    >
+      <div
+        class="header__mega-tabs__nav"
+        role="tablist"
+        aria-label="{{ link.title | escape }}"
+      >
+        {% assign tab_counter = 0 %}
+        {% for child_link in link.links %}
+          {% assign child_key = child_link.title | strip | downcase %}
+          {% if child_key == 'new students' %}
+            {% continue %}
+          {% endif %}
+          {% assign tab_label = child_link.title %}
+          {% if child_key contains 'main studio' %}
+            {% assign tab_label = 'Main Studio' %}
+          {% elsif child_key contains 'portage park' %}
+            {% assign tab_label = 'Portage Park' %}
+          {% elsif child_key == 'evanston' %}
+            {% assign tab_label = 'Evanston' %}
+          {% elsif child_key contains 'virtual' %}
+            {% assign tab_label = 'Virtual Classes' %}
+          {% endif %}
+          {% assign tab_id = tab_counter | append: '' %}
+          {% assign is_default_tab = false %}
+          {% if tab_id == default_tab_id %}
+            {% assign is_default_tab = true %}
+          {% endif %}
+          <button
+            class="header__mega-tabs__tab{% if is_default_tab %} is-active{% endif %}"
+            type="button"
+            role="tab"
+            id="mega-tab-{{ link.title | handle }}-{{ tab_id }}"
+            aria-selected="{% if is_default_tab %}true{% else %}false{% endif %}"
+            aria-controls="mega-panel-{{ link.title | handle }}-{{ tab_id }}"
+            data-mega-tab="{{ tab_id }}"
+          >
+            {{ tab_label }}
+          </button>
+          {% assign tab_counter = tab_counter | plus: 1 %}
+        {% endfor %}
+      </div>
+      <div class="header__mega-tabs__panels">
+        {% assign tab_counter = 0 %}
+        {% for child_link in link.links %}
+          {% assign child_key = child_link.title | strip | downcase %}
+          {% if child_key == 'new students' %}
+            {% continue %}
+          {% endif %}
+          {% assign tab_id = tab_counter | append: '' %}
+          {% assign is_default_tab = false %}
+          {% if tab_id == default_tab_id %}
+            {% assign is_default_tab = true %}
+          {% endif %}
+          <div
+            class="header__mega-tabs__panel{% if is_default_tab %} is-active{% endif %}"
+            role="tabpanel"
+            id="mega-panel-{{ link.title | handle }}-{{ tab_id }}"
+            aria-labelledby="mega-tab-{{ link.title | handle }}-{{ tab_id }}"
+            data-mega-panel="{{ tab_id }}"
+            {% unless is_default_tab %}
+              hidden
+            {% endunless %}
+          >
+            {% if child_link.links.size > 0 %}
+              <ul class="header__mega-tabs__link-list">
+                {% for grandchild_link in child_link.links %}
+                  <li class="header__mega-tabs__link-item">
+                    <a
+                      class="header__mega-tabs__link"
+                      href="{{ grandchild_link.url }}"
+                    >
+                      {{ grandchild_link.title }}
+                    </a>
+                  </li>
+                {% endfor %}
+              </ul>
+            {% else %}
+              <p class="header__mega-tabs__empty">
+                <a
+                  class="header__mega-tabs__link"
+                  href="{{ child_link.url }}"
+                >
+                  View {{ child_link.title }}
+                </a>
+              </p>
+            {% endif %}
+            <a
+              class="header__mega-tabs__location-link"
+              href="{{ child_link.url }}"
+            >
+              View location page
+            </a>
+          </div>
+          {% assign tab_counter = tab_counter | plus: 1 %}
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
